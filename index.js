@@ -35,6 +35,3 @@ client.on('message', message => {
 });
 
 client.login('ODQ5MzcyNDIzMDY5MjM3Mjg4.YLaNtg.IOwLfOP6FSJyQrZCoU0wLCH-u8U');
-
-
-//Test
