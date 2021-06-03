@@ -22,12 +22,12 @@ module.exports = {
         .setColor('#B8004C')
         .setTitle('Choose a color you want!')
         .setDescription('This will set your name on the server to what ever color you select.\n*Remove your reaction to remove the color role.*\n\n'
-            + `${blackColorEmoji} for black color!\n`
-            + `${redColorEmoji} for red color!\n`
-            + `${yellowColorEmoji} for yellow color!\n`
-            + `${greenColorEmoji} for green color!\n`
-            + `${purpleColorEmoji} for purple color!\n`
-            + `${whiteColorEmoji} for white color!`);
+            + `${blackColorEmoji} for ${blackColorRole}!\n`
+            + `${redColorEmoji} for ${redColorRole}!\n`
+            + `${yellowColorEmoji} for ${yellowColorRole}!\n`
+            + `${greenColorEmoji} for ${greenColorRole}!\n`
+            + `${purpleColorEmoji} for ${purpleColorRole}!\n`
+            + `${whiteColorEmoji} for ${whiteColorRole}!`);
 
 
     let messageEmbed = await message.channel.send(embed);
