@@ -19,6 +19,11 @@ client.once('ready', () => {
     console.log('Logged in as Better Bot#8742!');
 });
 
+client.on('guildMemberAdd', guildMember =>{
+
+        guildMember.guild.channels.cache.get('849819656000897045').send(`Welcome <@${guildMember.user.id}> to the **Better Bot support server**! Please read over <#849658278237831208> :)`)
+});
+
 client.on('message', message => {
     if (!message.content.startsWith(prefix) || message.author.bot) return;
 
@@ -31,6 +36,8 @@ client.on('message', message => {
         client.commands.get('invite').execute(message, args);
     } else if (command === 'mute') {
         client.commands.get('mute').execute(message, args);
+    } else if (command === 'unmute') {
+        client.commands.get('unmute').execute(message, args);
     }
 });
 
