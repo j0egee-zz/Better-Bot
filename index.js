@@ -35,15 +35,15 @@ client.on('message', message => {
 
     if (command === 'ping') {
         client.commands.get('ping').execute(message, args);
-    } else if (command === 'invite') {
-        client.commands.get('invite').execute(message, args);
     } else if (command === 'mute') {
         client.commands.get('mute').execute(message, args);
     } else if (command === 'unmute') {
         client.commands.get('unmute').execute(message, args);
     } else if (command === 'colorrole') {
         client.commands.get('colorrole').execute(message, args, Discord, client);
-    } 
+    } else if (command === 'black') {
+        client.commands.get('black').execute(message, args, Discord);
+    }
 });
 
 client.login('ODQ5MzcyNDIzMDY5MjM3Mjg4.YLaNtg.IOwLfOP6FSJyQrZCoU0wLCH-u8U');
