@@ -14,15 +14,15 @@ module.exports = {
 
             if (!args[1]) {
                 memberTarget.roles.add(muteRole.id);
-                memberTarget.guild.channels.cache.get('849850651218411530').send(`<@${memberTarget.user.id}> has been muted!`);
+                memberTarget.guild.channels.cache.get('533918755324035072').send(`<@${memberTarget.user.id}> has been muted!`);
                 return
             }
             memberTarget.roles.add(muteRole.id);
-            memberTarget.guild.channels.cache.get('849850651218411530').send(`<@${memberTarget.user.id}> has been muted for ${ms(ms(args[1]))}!`)
+            memberTarget.guild.channels.cache.get('533918755324035072').send(`<@${memberTarget.user.id}> has been muted for ${ms(ms(args[1]))}!`)
 
             setTimeout(function () {
                 memberTarget.roles.remove(muteRole.id);
-                memberTarget.guild.channels.cache.get('849850651218411530').send(`<@${memberTarget.user.id}>'s mute has expired!`)
+                memberTarget.guild.channels.cache.get('533918755324035072').send(`<@${memberTarget.user.id}>'s mute has expired!`)
             }, ms(args[1]));
 
 

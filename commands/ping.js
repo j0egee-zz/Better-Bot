@@ -3,7 +3,7 @@ module.exports = {
     description: "this is a ping command!",
     execute(message, args) {
 
-        if (message.member.roles.cache.has('849438809359646751')) {
+        if (message.member.roles.cache.has('533913942632693771', '533913565485203457')) {
 
             message.channel.send('pong!');
         }
