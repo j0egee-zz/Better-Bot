@@ -4,8 +4,6 @@ module.exports = {
     async execute(message, args, Discord, client) {
         const channel = '849824394640359424';
 
-        guild.roles.create({ data: { name: 'Color - Black', setColor: ['#000000'] } });
-
         const blackColorRole = message.guild.roles.cache.find(role => role.name === "Color - Black");
         const redColorRole = message.guild.roles.cache.find(role => role.name === "Color - Red");
         const yellowColorRole = message.guild.roles.cache.find(role => role.name === "Color - Yellow");
