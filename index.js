@@ -24,10 +24,8 @@ client.once('ready', () => {
 });
 
 client.on('guildMemberAdd', guildMember => {
-    let welcomeRole = guildMember.guild.roles.cache.find(role => role.name === 'Viewers');
 
-    guildMember.roles.add(welcomeRole);
-    guildMember.guild.channels.cache.get('533927316825440266').send(`Welcome <@${guildMember.user.id}> to the **Marco"s Lounge**! Please read over <#533918266951729162> :)`)
+    guildMember.guild.channels.cache.get('849819656000897045').send(`Welcome <@${guildMember.user.id}> to the **Marco"s Lounge**! Please read over <#533918266951729162> :)`)
 });
 
 client.on('message', message => {
