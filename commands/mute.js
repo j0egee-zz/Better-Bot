@@ -3,7 +3,7 @@ const ms = require('ms');
 module.exports = {
     name: 'mute',
     description: "Mute a member in your server!",
-    execute(message, args) {
+    execute(client, message, args, Discord) {
         const target = message.mentions.users.first();
 
             

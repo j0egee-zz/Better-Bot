@@ -1,7 +1,7 @@
 module.exports = {
     name: 'colorrole',
     description: "Sets up a color role message!",
-    async execute(message, args, Discord, client) {
+    async execute(client, message, args, Discord) {
         const channel = '849824394640359424';
 
         const blackColorRole = message.guild.roles.cache.find(role => role.name === "Color - Black");

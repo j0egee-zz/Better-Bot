@@ -1,7 +1,7 @@
 module.exports = {
     name: 'unmute',
     description: "Unmute a member in your server!",
-    execute(message, args) {
+    execute(client, message, args, Discord) {
         const target = message.mentions.users.first();
         if(target){
                 let muteRole = message.guild.roles.cache.find(role => role.name === 'Muted');

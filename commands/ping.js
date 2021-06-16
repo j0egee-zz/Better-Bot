@@ -1,7 +1,7 @@
 module.exports = {
     name: 'ping',
     description: "this is a ping command!",
-    execute(message, args) {
+    execute(client, message, args, Discord) {
 
         if (message.member.roles.cache.has('849438809359646751')) {
 
