@@ -1,5 +1,6 @@
 module.exports = {
     name: 'colorrole',
+    permissions: ["ADMINISTRATOR"],
     description: "Sets up a color role message!",
     async execute(client, message, args, Discord) {
         const channel = '849824394640359424';

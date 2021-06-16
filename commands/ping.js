@@ -1,5 +1,6 @@
 module.exports = {
     name: 'ping',
+    permissions: ["ADMINISTRATOR"],
     description: "this is a ping command!",
     execute(client, message, args, Discord) {
 
