@@ -1,11 +1,53 @@
-module.exports = (Discord, client, message) =>{
+const profileModel = require("../../models/profileSchema");
+
+const cooldowns = new Map();
+
+
+module.exports = async (Discord, client, message) =>{
     const prefix = '-';
     if(!message.content.startsWith(prefix) || message.author.bot) return;
+
+    let profileData;
+    try{
+        profileData = await profileModel.findOne({ userID: message.author.id}); 
+        if(!profileData){
+            let profile = await profileModel.create({
+                userID: message.author.id,
+                serverID: message.guild.id,
+                coins: 1000,
+                bank: 0,
+              });
+              profile.save();
+        }
+    }catch(err){
+        console.log(err)
+    }
 
     const args = message.content.slice(prefix.length).split(/ +/);
     const cmd = args.shift().toLowerCase();
 
     const command = client.commands.get(cmd);
+
+    if(!cooldowns.has(command.name)){
+        cooldowns.set(command.name, new Discord.Collection());
+    }
+
+    const current_time = Date.now();
+    const time_stamps = cooldowns.get(command.name);
+    const cooldown_amount = (command.cooldown) * 60000;
+
+    if(time_stamps.has(message.author.id)){
+        const expiration_time = time_stamps.get(message.author.id) + cooldown_amount;
+
+        if(current_time < expiration_time){
+            const time_left = (expiration_time - current_time) / 60000;
+
+            return message.reply(`You have to wait **${time_left.toFixed(1)} minutes** before you can run command ${command.name}.`);
+        }
+    }
+
+    time_stamps.set(message.author.id, current_time);
+    setTimeout(() => time_stamps.delete(message.author.id), cooldown_amount);
 
     const validPermissions = [
     "CREATE_INSTANT_INVITE",
@@ -57,5 +99,5 @@ module.exports = (Discord, client, message) =>{
     }
 
 
-    if(command) command.execute(client, message, args, Discord);
+    if(command) command.execute(client, message, args, Discord, profileData);
 }
