@@ -1,5 +1,6 @@
 module.exports = {
-    name: 'bal',
+    name: 'balance',
+    aliases: ['bal', 'coins', 'money'],
     permissions: [],
     cooldown: 0.1,
     description: "Check your coin balance!",
