@@ -10,6 +10,17 @@ const memberCounter = require('./counters/member-counter')
 client.commands = new Discord.Collection();
 client.events = new Discord.Collection();
 
+client.on("ready", () =>{
+    console.log(`Logged in as ${client.user.tag}!`);
+    client.user.setPresence({
+        status: "online",  //You can show online, idle....
+        game: {
+            name: "Using !help",  //The message shown
+            type: "STREAMING" //PLAYING: WATCHING: LISTENING: STREAMING:
+        }
+    });
+ });
+
 client.on('guildMemberAdd', guildMember => {
 
     guildMember.guild.channels.cache.get('849819656000897045').send(`Welcome <@${guildMember.user.id}> to the **Marco"s Lounge**! Please read over <#533918266951729162> :)`)
