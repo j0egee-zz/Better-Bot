@@ -1,5 +1,6 @@
 module.exports = {
     name: 'unmute',
+    aliases: ['umute', 'removemute'],
     permissions: ["KICK_MEMBERS"],
     description: "Unmute a member in your server!",
     execute(client, message, args, Discord) {

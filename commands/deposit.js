@@ -2,6 +2,7 @@ const profileModel = require("../models/profileSchema");
 
 module.exports = {
     name: 'deposit',
+    aliases: ['dep'],
     permissions: [],
     cooldown: 0.1,
     description: "Deposit coins into your bank!",

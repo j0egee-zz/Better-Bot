@@ -1,5 +1,6 @@
 module.exports = {
     name: 'colorrole',
+    aliases: ['reactionrole', 'reactrole', 'cr'],
     permissions: ["ADMINISTRATOR"],
     description: "Sets up a color role message!",
     async execute(client, message, args, Discord) {

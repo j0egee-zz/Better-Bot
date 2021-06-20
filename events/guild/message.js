@@ -26,7 +26,7 @@ module.exports = async (Discord, client, message) =>{
     const args = message.content.slice(prefix.length).split(/ +/);
     const cmd = args.shift().toLowerCase();
 
-    const command = client.commands.get(cmd);
+    const command = client.commands.get(cmd) || client.commands.find(a => a.aliases && a.aliases.includes(cmd));
 
     if(!cooldowns.has(command.name)){
         cooldowns.set(command.name, new Discord.Collection());
@@ -99,5 +99,5 @@ module.exports = async (Discord, client, message) =>{
     }
 
 
-    if(command) command.execute(client, message, args, Discord, profileData);
+    if(command) command.execute(client, message, cmd, args, Discord, profileData);
 }

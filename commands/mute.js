@@ -2,6 +2,7 @@ const ms = require('ms');
 
 module.exports = {
     name: 'mute',
+    aliases: ['tempmute', 'timeout'],
     permissions: ["KICK_MEMBERS"],
     description: "Mute a member in your server!",
     execute(client, message, args, Discord) {
