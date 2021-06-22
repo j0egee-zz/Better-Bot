@@ -6,7 +6,7 @@ module.exports = {
     permissions: [],
     cooldown: 0.1,
     description: "Withdraw coins from your bank!",
-    async execute(client, message, args, Discord, profileData) {
+    async execute(client, message, cmd, args, Discord, profileData) {
         const amount = args[0];
         if(amount % 1 != 0 || amount <= 0) return message.channel.send('Withdraw amount must be a whole number grater then 0.');
         try{

@@ -13,7 +13,7 @@ client.events = new Discord.Collection();
 
 client.on('guildMemberAdd', guildMember => {
 
-    guildMember.guild.channels.cache.get('849819656000897045').send(`Welcome <@${guildMember.user.id}> to the **Marco"s Lounge**! Please read over <#533918266951729162> :)`)
+    guildMember.guild.channels.cache.get('849819656000897045').send(`Welcome <@${guildMember.user.id}> to the **Better Bot Support Server**! Please read over <#849658278237831208> :)`)
 });
 
 ['command_handler', 'event_handler'].forEach(handler => {

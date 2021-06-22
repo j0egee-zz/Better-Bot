@@ -5,7 +5,7 @@ module.exports = {
     permissions: ["ADMINISTRATOR"],
     cooldown: 0.1,
     description: "Give a user coins!",
-    async execute(client, message, args, Discord, profileData) {
+    async execute(client, message, cmd, args, Discord, profileData) {
         if(!args.length) return message.channel.send('You need to mention a user in this guild.');
         const amount = args[1]
         const target = message.mentions.users.first();
