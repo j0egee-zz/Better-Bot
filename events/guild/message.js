@@ -42,9 +42,9 @@ module.exports = async (Discord, client, message) =>{
         if(current_time < expiration_time){
             const time_left = (expiration_time - current_time) / 60000;
 
-            return message.reply(`You have to wait **${time_left.toFixed(1)} minutes** before you can run command ${command.name}.`);
+            return message.reply(`You have to wait **${time_left.toFixed(1)} minutes** before you can run command \`-${command.name}\`.`);
         }
-    }
+    }      
 
     time_stamps.set(message.author.id, current_time);
     setTimeout(() => time_stamps.delete(message.author.id), cooldown_amount);
