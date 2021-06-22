@@ -42,7 +42,9 @@ module.exports = async (Discord, client, message) =>{
         if(current_time < expiration_time){
             const time_left = (expiration_time - current_time) / 60000;
 
-            return message.reply(`You have to wait **${time_left.toFixed(1)} minutes** before you can run command \`-${command.name}\`.`);
+            const message_reply = message.reply(`You have to wait **${time_left.toFixed(1)} minutes** before you can run command \`-${command.name}\`.`);
+            return message_reply; 
+            
         }
     }      
 
