@@ -9,7 +9,7 @@ module.exports = {
         if(!args.length) return message.channel.send('You need to mention a user in this guild.');
         const amount = args[1]
         const target = message.mentions.users.first();
-        if(!target) return message.channel.sent('The user you mentioned is not in thie guild.');
+        if(!target) return message.channel.sent('The user you mentioned is not in this guild.');
   
         if(amount % 1 != 0 || amount <= 0) return message.channel.send('The give amount must be a whole number grater then 0.');
 
