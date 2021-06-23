@@ -2,7 +2,7 @@ const profileModel = require("../models/profileSchema");
 module.exports = {
     name: 'beg',
     permissions: [],
-    cooldown: 1440,
+    cooldown: 60,
     description: "Beg other users for coins!",
     async execute(client, message, args, Discord, profileData){
         const randomNumber = Math.floor(Math.random() * 500) + 1;

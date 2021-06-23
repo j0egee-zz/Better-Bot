@@ -4,7 +4,7 @@ module.exports = {
     name: 'deposit',
     aliases: ['dep'],
     permissions: [],
-    cooldown: 0.1,
+    cooldown: 1,
     description: "Deposit coins into your bank!",
     async execute(client, message, cmd, args, Discord, profileData){
             const amount = args[0];
