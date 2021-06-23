@@ -3,7 +3,7 @@ module.exports = {
     aliases: ['reactionrole', 'reactrole', 'cr'],
     permissions: ["ADMINISTRATOR"],
     description: "Sets up a color role message!",
-    async execute(client, message, args, Discord) {
+    async execute(client, message, cmd, args, Discord, profileData) {
         const channel = '849824394640359424';
 
         const blackColorRole = message.guild.roles.cache.find(role => role.name === "Color - Black");
@@ -20,8 +20,8 @@ module.exports = {
         const purpleColorEmoji = '🟣'
         const whiteColorEmoji = '⚪'
 
-        let embed = new Discord.MessageEmbed()
-        .setColor('#B8004C')
+        const embed = new Discord.MessageEmbed()
+        .setColor('FADF2E')
         .setTitle('Choose a color you want!')
         .setDescription('This will set your name on the server to what ever color you select.\n*Remove your reaction to remove the color role.*\n\n'
             + `${blackColorEmoji} for ${blackColorRole}!\n`

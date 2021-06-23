@@ -3,7 +3,7 @@ module.exports = {
     aliases: ['proles', 'roles', 'pr'],
     permissions: ["ADMINISTRATOR"],
     description: "Set up reaction roles for ping noticications!",
-    async execute(client, message, args, Discord) {
+    async execute(client, message, cmd, args, Discord, profileData) {
         const channel = '849824394640359424';
 
         const suggestionPings = message.guild.roles.cache.find(role => role.name === "Suggestion - Pings");
@@ -11,17 +11,17 @@ module.exports = {
         const pollPings = message.guild.roles.cache.find(role => role.name === "Poll - Pings");
         const minecraftPings = message.guild.roles.cache.find(role => role.name === "Minecraft - Pings");
 
-        const suggestionEmojie = '⚫'
-        const serverUpdateEmojie = '🔴'
-        const pollEmojie = '🟡'
-        const minecraftEmojie = '🟢'
+        const suggestionEmojie = '📫'
+        const serverUpdateEmojie = '🔔'
+        const pollEmojie = '🗳️'
+        const minecraftEmojie = '🎮'
 
-        let embed = new Discord.MessageEmbed()
-        .setColor('#B8004C')
+        const embed = new Discord.MessageEmbed()
+        .setColor('FADF2E')
         .setTitle('Choose a pings you want to recieve!')
         .setDescription('\n*Remove your reaction to remove the role.*\n\n'
             + `${suggestionEmojie} for ${suggestionPings}!\n`
-            + `${serverUpdatePings} for ${serverUpdatePings}!\n`
+            + `${serverUpdateEmojie} for ${serverUpdatePings}!\n`
             + `${pollEmojie} for ${pollPings}!\n`
             + `${minecraftEmojie} for ${minecraftPings}!\n`);
 
