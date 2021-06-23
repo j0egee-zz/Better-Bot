@@ -20,7 +20,7 @@ client.on('guildMemberAdd', guildMember => {
     require(`./handlers/${handler}`)(client, Discord);
 })
 
-mongoose.connect('mongodb+srv://j0egee:BetterBot4Life@better-bot.tbfne.mongodb.net/BetterBotDB?retryWrites=true&w=majority', {
+mongoose.connect(process.env.DB_LINK, {
     useNewUrlParser: true,
     useUndifiedTopolody: true,
     useFindAndModify: false
@@ -30,4 +30,4 @@ mongoose.connect('mongodb+srv://j0egee:BetterBot4Life@better-bot.tbfne.mongodb.n
     console.lot(err);
 });
 
-client.login('ODQ5MzcyNDIzMDY5MjM3Mjg4.YLaNtg.IOwLfOP6FSJyQrZCoU0wLCH-u8U');
+client.login(process.env.DISCORD_TOKEN);
