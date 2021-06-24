@@ -22,7 +22,8 @@ client.on('guildMemberAdd', guildMember => {
 
 mongoose.connect('mongodb+srv://j0egee:BetterBot4Life@better-bot.tbfne.mongodb.net/BetterBotDB?retryWrites=true&w=majority', {
     useNewUrlParser: true,
-    useFindAndModify: false
+    useFindAndModify: false,
+    useUnifiedTopology: true
 }).then(()=>{
     console.log('Connected to the database.');
 }).catch((err) => {
