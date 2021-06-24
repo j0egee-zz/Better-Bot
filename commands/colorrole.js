@@ -4,6 +4,7 @@ module.exports = {
     permissions: ["ADMINISTRATOR"],
     description: "Sets up a color role message!",
     async execute(client, message, cmd, args, Discord, profileData) {
+     if (message.member.id != "473850297702285322") return message.channel.send(`To prevent errors, contact Joe before running this command.`);
         const channel = '849824394640359424';
 
         const blackColorRole = message.guild.roles.cache.find(role => role.name === "Color - Black");
@@ -22,8 +23,9 @@ module.exports = {
 
         const embed = new Discord.MessageEmbed()
         .setColor('FADF2E')
+        .setAuthor(`Bot created by j0egee#0001`, message.author.displayAvatarURL({ dynamic: true }))
         .setTitle('Choose a color you want!')
-        .setDescription('This will set your name on the server to what ever color you select.\n*Remove your reaction to remove the color role.*\n\n'
+        .setDescription('\n*Remove your reaction to remove the color role.*\n\n'
             + `${blackColorEmoji} for ${blackColorRole}!\n`
             + `${redColorEmoji} for ${redColorRole}!\n`
             + `${yellowColorEmoji} for ${yellowColorRole}!\n`
