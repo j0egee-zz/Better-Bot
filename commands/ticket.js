@@ -23,7 +23,7 @@ console.log(channel.parentID);
     
     channel.send(new Discord.MessageEmbed()
         .setColor('fadf2e')
-        .setAuthor('Welcome to support!')
+        .setAuthor(`Bot created by j0egee#0001`, message.author.displayAvatarURL({ dynamic: true }))
         .setDescription(`Hey there <@${message.author.id}>\nThank you for contacting our support team! Please start off by explaining what issue you are having.`)
     )
 

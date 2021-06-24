@@ -5,6 +5,13 @@ module.exports = {
     cooldown: 1,
     description: "Check the user balance",
     execute(client, message, cmd, args, Discord, profileData) {
-      message.reply(`Your current wallet balance is *${profileData.coins} coins*, and you bank balance is *${profileData.bank} coins*.`);
+        const embed = new Discord.MessageEmbed()
+                .setColor('FADF2E')
+                .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
+                .setTitle('Your balance is:')
+                .setDescription(`**Coins**- *${profileData.coins}*!\n`
+                + `**Bank**- *${profileData.bank}*!`);
+
+               message.channel.send(embed)
     },
   };
