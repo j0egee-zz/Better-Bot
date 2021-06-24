@@ -27,7 +27,7 @@ mongoose.connect('mongodb+srv://j0egee:BetterBot4Life@better-bot.tbfne.mongodb.n
 }).then(()=>{
     console.log('Connected to the database.');
 }).catch((err) => {
-    console.lot(err);
+    console.log(err);
 });
 
 client.login('ODQ5MzcyNDIzMDY5MjM3Mjg4.YLaNtg.-Vx1wzHZAfHTaMfgaQGzHXeC2L4');
