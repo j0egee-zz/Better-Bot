@@ -15,5 +15,6 @@ module.exports = {
         } else{
             message.channel.send('I cant seem to unmute that member. Please re-check your command and try again.');
          }
+         message.delete()
     }
 }
