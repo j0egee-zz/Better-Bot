@@ -16,11 +16,11 @@ module.exports = {
 
             if (!args[1]) {
                 memberTarget.roles.add(muteRole.id);
-                memberTarget.guild.channels.cache.get('849850651218411530').send(`<@${memberTarget.user.id}> has been muted!`);
+                memberTarget.guild.channels.cache.get('849850651218411530').send(`${message.author.tag}, <@${memberTarget.user.id}> has been muted!`);
                 return
             }
             memberTarget.roles.add(muteRole.id);
-            memberTarget.guild.channels.cache.get('849850651218411530').send(`<@${memberTarget.user.id}> has been muted for ${ms(ms(args[1]))}!`)
+            memberTarget.guild.channels.cache.get('849850651218411530').send(`${message.author.tag}, <@${memberTarget.user.id}> has been muted for ${ms(ms(args[1]))}!`)
 
             setTimeout(function () {
                 memberTarget.roles.remove(muteRole.id);
@@ -32,5 +32,6 @@ module.exports = {
             message.channel.send('I cant seem to mute that member. Please re-check your command and try again.');
 
         }
+        message.delete()
     }
 }
