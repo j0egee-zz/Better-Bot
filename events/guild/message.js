@@ -28,6 +28,8 @@ module.exports = async (Discord, client, message) =>{
 
     const command = client.commands.get(cmd) || client.commands.find(a => a.aliases && a.aliases.includes(cmd));
 
+    if(!command) return message.channel.send('This is not a valid command.');
+
     if(!cooldowns.has(command.name)){
         cooldowns.set(command.name, new Discord.Collection());
     }
