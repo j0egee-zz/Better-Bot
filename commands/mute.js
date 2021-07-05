@@ -5,7 +5,7 @@ module.exports = {
     aliases: ['tempmute', 'timeout'],
     permissions: ["KICK_MEMBERS"],
     description: "Mute a member in your server!",
-    execute(client, message, args, Discord) {
+    execute(client, message, cmd, args, Discord, profileData) {
         const target = message.mentions.users.first();
 
             
