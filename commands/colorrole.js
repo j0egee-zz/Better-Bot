@@ -23,7 +23,7 @@ module.exports = {
 
         const embed = new Discord.MessageEmbed()
         .setColor('FADF2E')
-        .setAuthor(`Bot created by j0egee#0001`, message.author.displayAvatarURL({ dynamic: true }))
+        .setFooter(`Bot created by j0egee#0001`, "https://cdn.discordapp.com/attachments/845366607080456265/861746867008569384/Untitled_Artwork_3.png")
         .setTitle('Choose a color you want!')
         .setDescription('\n*Remove your reaction to remove the color role.*\n\n'
             + `${blackColorEmoji} for ${blackColorRole}!\n`

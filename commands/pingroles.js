@@ -4,7 +4,6 @@ module.exports = {
     permissions: ["ADMINISTRATOR"],
     description: "Set up reaction roles for ping noticications!",
     async execute(client, message, cmd, args, Discord, profileData) {
-    if (message.member.id != "473850297702285322") return message.channel.send(`To prevent errors, contact Joe before running this command.`);
         const channel = '849824394640359424';
 
         const suggestionPings = message.guild.roles.cache.find(role => role.name === "Suggestion - Pings");
@@ -19,7 +18,7 @@ module.exports = {
 
         const embed = new Discord.MessageEmbed()
         .setColor('FADF2E')
-        .setAuthor(`Bot created by j0egee#0001`, message.author.displayAvatarURL({ dynamic: true }))
+        .setFooter(`Bot created by j0egee#0001`, "https://cdn.discordapp.com/attachments/845366607080456265/861746867008569384/Untitled_Artwork_3.png")
         .setTitle('Choose a pings you want to recieve!')
         .setDescription('\n*Remove your reaction to remove the role.*\n\n'
             + `${suggestionEmojie} for ${suggestionPings}!\n`

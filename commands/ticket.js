@@ -23,13 +23,16 @@ console.log(channel.parentID);
     
     channel.send(new Discord.MessageEmbed()
         .setColor('fadf2e')
-        .setAuthor(`Bot created by j0egee#0001`, message.author.displayAvatarURL({ dynamic: true }))
+        .setTimestamp(Date.now())
+        .setFooter(`Bot created by j0egee#0001`, "https://cdn.discordapp.com/attachments/845366607080456265/861746867008569384/Untitled_Artwork_3.png")
         .setDescription(`Hey there <@${message.author.id}>\nThank you for contacting our support team! Please start off by explaining what issue you are having.`)
     )
 
     message.channel.send(new Discord.MessageEmbed()
         .setColor('fadf2e')
+        .setTimestamp(Date.now())
         .setAuthor('I made the ticket for you!')
+        .setFooter(`Bot created by j0egee#0001`, message.author.displayAvatarURL({ dynamic: true }))
         .setDescription(`<#${channel.id}>`)
     )
     const reactionMessage = await channel.send("Ill let @everyone know that there is a new ticket now.");
