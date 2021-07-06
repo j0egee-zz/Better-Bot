@@ -15,7 +15,7 @@ module.exports = {
 
         try{
             const targetData = await profileModel.findOne({ userID: target.id});
-            if(!targetData) return message.channel.send(`That user doesn't have any data. If you think this is an error contact your server admin.`);
+            if(!targetData) return message.channel.send(`That user doesn't have any data. Please use \`-createdata <user>\``);
 
                 await profileModel.findOneAndUpdate({
                     userID: target.id
@@ -26,7 +26,7 @@ module.exports = {
                 } 
                 );
 
-                return message.channel.send(`${target} has recived **${amount} coins**.`)
+                return message.channel.send(`${target} has recived **${amount} coins**. They now have *${targetData.coins} coins*.`)
         }catch(err){
             console.log(err)
         }
