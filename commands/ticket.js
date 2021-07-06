@@ -28,7 +28,14 @@ console.log(channel.parentID);
         .setDescription(`Hey there <@${message.author.id}>\nThank you for contacting our support team! Please start off by explaining what issue you are having.`)
     )
 
-    message.guild.channels.cache.get('849850651218411530').send(`<@${message.author.id}> created a ticket. ${channel}`)
+    const createEmbed = new Discord.MessageEmbed()
+        .setColor('FADF2E')
+        .setTimestamp(Date.now())
+        .setFooter(`Bot created by j0egee#0001`, "https://cdn.discordapp.com/attachments/845366607080456265/861746867008569384/Untitled_Artwork_3.png")
+        .setTitle(`${message.author.username}`)
+        .setDescription(`Has created a ticket ${channel}`);
+
+    message.guild.channels.cache.get('849850651218411530').send(createEmbed)
 
     message.channel.send(new Discord.MessageEmbed()
         .setColor('fadf2e')
@@ -53,15 +60,30 @@ console.log(channel.parentID);
       );
   
       collector.on("collect", (reaction, user) => {
+
+        const lockEmbed = new Discord.MessageEmbed()
+        .setColor('FADF2E')
+        .setTimestamp(Date.now())
+        .setFooter(`Bot created by j0egee#0001`, "https://cdn.discordapp.com/attachments/845366607080456265/861746867008569384/Untitled_Artwork_3.png")
+        .setTitle(`${message.author.username}'s ticket`)
+        .setDescription(`Has been locked by ${user.username}`);
+
+        const deleteEmbed = new Discord.MessageEmbed()
+        .setColor('FADF2E')
+        .setTimestamp(Date.now())
+        .setFooter(`Bot created by j0egee#0001`, "https://cdn.discordapp.com/attachments/845366607080456265/861746867008569384/Untitled_Artwork_3.png")
+        .setTitle(`${message.author.username}'s ticket`)
+        .setDescription(`Has been deleted by ${user.username}`);
+
         switch (reaction.emoji.name) {
           case "🔒":
             channel.updateOverwrite(message.author, { SEND_MESSAGES: false });
-            message.guild.channels.cache.get('849850651218411530').send(`${channel} (${message.author.username}) has been locked by <@${user.id}>.`)
+            message.guild.channels.cache.get('849850651218411530').send(lockEmbed)
             break;
           case "⛔":
             channel.send("Deleting this channel in 5 seconds!");
             setTimeout(() => channel.delete(), 5000);
-            message.guild.channels.cache.get('849850651218411530').send(`${channel} (${message.author.username}) has been deleted by <@${user.id}>`)
+            message.guild.channels.cache.get('849850651218411530').send(deleteEmbed)
             break;
         }
     });
