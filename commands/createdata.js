@@ -22,7 +22,6 @@ module.exports = {
             userID: target.id,
             serverID: message.guild.id,
             coins: 1000,
-            bank: 0,
           });
           profile.save();
           message.channel.send(`${target} now has data in my system!`)

@@ -3,7 +3,7 @@ module.exports = {
     name: 'beg',
     permissions: [],
     cooldown: 60,
-    description: "Beg other users for coins!",
+    description: "Beg for coins!",
     async execute(client, message, args, Discord, profileData){
         const randomNumber = Math.floor(Math.random() * 500) + 1;
         const response = await profileModel.findOneAndUpdate({
@@ -14,6 +14,6 @@ module.exports = {
             }
         }
     );
-        return message.reply(`you begged and recived **${randomNumber} coins**!`);
+        return message.reply(`You begged and recived **${randomNumber} coins**!`);
     },
 };
