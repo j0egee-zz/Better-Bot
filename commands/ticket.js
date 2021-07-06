@@ -28,6 +28,8 @@ console.log(channel.parentID);
         .setDescription(`Hey there <@${message.author.id}>\nThank you for contacting our support team! Please start off by explaining what issue you are having.`)
     )
 
+    message.guild.channels.cache.get('849850651218411530').send(`<@${message.author.id}> created a ticket. ${channel}`)
+
     message.channel.send(new Discord.MessageEmbed()
         .setColor('fadf2e')
         .setTimestamp(Date.now())
@@ -54,10 +56,12 @@ console.log(channel.parentID);
         switch (reaction.emoji.name) {
           case "🔒":
             channel.updateOverwrite(message.author, { SEND_MESSAGES: false });
+            message.guild.channels.cache.get('849850651218411530').send(`${channel} (${message.author.username}) has been locked by <@${user.id}>.`)
             break;
           case "⛔":
             channel.send("Deleting this channel in 5 seconds!");
             setTimeout(() => channel.delete(), 5000);
+            message.guild.channels.cache.get('849850651218411530').send(`${channel} (${message.author.username}) has been deleted by <@${user.id}>`)
             break;
         }
     });
