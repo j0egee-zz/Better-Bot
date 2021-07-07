@@ -2,7 +2,7 @@ module.exports = {
     name: 'ticket',
     aliases: [],
     permissions: [],
-    cooldown: 1,
+    cooldown: 0.5,
     description: 'Creates a ticket!',
     async execute(client, message, cmd, args, Discord, profileData){
 

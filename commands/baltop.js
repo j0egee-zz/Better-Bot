@@ -2,7 +2,7 @@ module.exports = {
     name: "baltop",
     aliases: ["ballead", "balleaderboard", "bl", "mostmoney"],
     permissions: [],
-    cooldown: 1,
+    cooldown: 0.3,
     description: "Check the user balance",
     async execute(client, message, cmd, args, Discord, profileData) {
         const bal1 = await profileModel.findOne({ userID: target.id})
