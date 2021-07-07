@@ -10,6 +10,9 @@ const memberCounter = require('./counters/member-counter')
 client.commands = new Discord.Collection();
 client.events = new Discord.Collection();
 
+client.on("ready", async () => {
+    client.user.setActivity("your server | -help", {type: "WATCHING"})
+})
 
 client.on('guildMemberAdd', guildMember => {
 
@@ -29,5 +32,12 @@ mongoose.connect('mongodb+srv://j0egee:BetterBot4Life@better-bot.tbfne.mongodb.n
 }).catch((err) => {
     console.log(err);
 });
+
+client.on('messageUpdate', async(oldMessage, newMessage, Discord)=>{
+    require('./events/guild/messageUpdate')(oldMessage, newMessage)
+})
+client.on('messageDelete', async(message, Discord)=>{
+    require('./events/guild/messageDelete')(message)
+})
 
 client.login('ODQ5MzcyNDIzMDY5MjM3Mjg4.YLaNtg.-Vx1wzHZAfHTaMfgaQGzHXeC2L4');

@@ -16,10 +16,12 @@ module.exports = {
         const embed = new Discord.MessageEmbed()
             .setColor('FADF2E')
             .setTimestamp(Date.now())
-            .setAuthor(`Username - ${pfpMember.user.tag}\nNickName - ${pfpMember.nickname}\nUserID - ${pfpMember.user.id}`)
+            .setFooter(`Bot created by j0egee#0001`, "https://cdn.discordapp.com/attachments/845366607080456265/861746867008569384/Untitled_Artwork_3.png")
+            .setAuthor(`Username - ${pfpMember.user.tag}\n\nNickName - ${pfpMember.nickname}\n\nUserID - ${pfpMember.user.id}`)
             .setImage(pfpMember.user.displayAvatarURL({ dynamic: true }))
-            .setDescription(`Coins - ${userData.coins}\nJoined on - ${pfpMember.joinedAt}\nCreated on - ${pfpMember.user.createdAt}`)
-            .setFooter(`Bot created by j0egee#0001`, "https://cdn.discordapp.com/attachments/845366607080456265/861746867008569384/Untitled_Artwork_3.png");
+            .setDescription(`Coins - ${userData.coins}\n\n`
+            + `Joined on - ${pfpMember.joinedAt.toLocaleDateString()}, ${pfpMember.joinedAt.toLocaleTimeString()}\n\n`
+            + `Created on - ${pfpMember.user.createdAt.toLocaleDateString()}, ${pfpMember.user.createdAt.toLocaleTimeString()}\n\n`);
 
         message.channel.send(embed);
         message.channel.send(`Here is ${pfpMember}'s user info.`);
