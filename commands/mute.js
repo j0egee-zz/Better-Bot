@@ -17,6 +17,7 @@ module.exports = {
             if (!args[1]) {
                 memberTarget.roles.add(muteRole.id);
                 memberTarget.guild.channels.cache.get('849850651218411530').send(`${message.author.tag}, <@${memberTarget.user.id}> has been muted!`);
+                message.delete()
                 return
             }
             memberTarget.roles.add(muteRole.id);
