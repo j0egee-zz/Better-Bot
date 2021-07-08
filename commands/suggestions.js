@@ -9,6 +9,9 @@ module.exports = {
         if(!channel) return message.channel.send('This server has no suggestion channel.');
 
         let messageArgs = args.join(' ');
+
+        if(!messageArgs) return message.channel.send('You must say your suggestion.');
+        
         const embed = new Discord.MessageEmbed()
         .setColor('FADF2E')
         .setTimestamp(Date.now())
