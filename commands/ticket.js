@@ -14,7 +14,7 @@ const channel = await message.guild.channels.create(`ticket-${message.author.use
 await channel.setParent('849355248413704212');
 console.log(channel.parentID);
 
-    channel.updateOverwrite(message.guild.id, {SEND_MESSAGES: false, 'VIEW_CHANNEL': false});
+    channel.updateOverwrite(message.guild.id, {'SEND_MESSAGES': false, 'VIEW_CHANNEL': false});
     channel.updateOverwrite(message.author, {'SEND_MESSAGES': true, 'VIEW_CHANNEL': true});
     channel.updateOverwrite(ownerRole, {'SEND_MESSAGES': true, 'VIEW_CHANNEL': true});
     channel.updateOverwrite(modRole, {'SEND_MESSAGES': true, 'VIEW_CHANNEL': true});
