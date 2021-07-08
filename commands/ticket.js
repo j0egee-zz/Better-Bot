@@ -35,7 +35,7 @@ console.log(channel.parentID);
         .setTitle(`${message.author.username}`)
         .setDescription(`Has created a ticket ${channel}`);
 
-    message.guild.channels.cache.get('849850651218411530').send(createEmbed)
+    message.guild.channels.cache.get('860961443393830912').send(createEmbed)
 
     message.channel.send(new Discord.MessageEmbed()
         .setColor('fadf2e')
@@ -78,12 +78,12 @@ console.log(channel.parentID);
         switch (reaction.emoji.name) {
           case "🔒":
             channel.updateOverwrite(message.author, { SEND_MESSAGES: false });
-            message.guild.channels.cache.get('849850651218411530').send(lockEmbed)
+            message.guild.channels.cache.get('860961443393830912').send(lockEmbed)
             break;
           case "⛔":
             channel.send("Deleting this channel in 5 seconds!");
             setTimeout(() => channel.delete(), 5000);
-            message.guild.channels.cache.get('849850651218411530').send(deleteEmbed)
+            message.guild.channels.cache.get('860961443393830912').send(deleteEmbed)
             break;
         }
     });
