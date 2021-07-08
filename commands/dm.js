@@ -8,6 +8,7 @@ module.exports = {
         if(!user)return message.channel.send('You must mention a user in this guild, or say there user id!');
         if(!args.slice(1).join(" ")) return message.channel.send('You must say the message.');
         
-        user.user.send(args.slice(1).join(" ")).catch(() => message.channel.send('That user is not allowing DMs!')).then(() => message.channel.send(`DM has been sent to ${user.user.tag}`))
+        //user.user.send(args.slice(1).join(" ")).catch(() => message.channel.send('That user is not allowing DMs!')).then(() => message.channel.send(`DM has been sent to ${user.user.tag}`))
+        user.user.send(args.slice(1).join(" ")).then(() => message.channel.send(`DM has been sent to ${user.user.tag}`)).catch(() => message.channel.send(`${user.user.tag} is not accepting DM's.`))
     }
 }
