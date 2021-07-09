@@ -11,7 +11,7 @@ module.exports = {
         const target = message.mentions.users.first();
         if(!target) return message.channel.sent('The user you mentioned is not in this guild.');
   
-        if(amount % 1 != 0 || amount <= 0) return message.channel.send('The set amount must be a whole number grater then 0.');
+        if(amount % 1 != 0 || amount < 0) return message.channel.send('The set amount must be a whole number.');
 
         try{
             const targetData = await profileModel.findOne({ userID: target.id});
