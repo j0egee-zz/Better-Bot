@@ -23,7 +23,7 @@ module.exports = {
         } 
         );  
         await message.guild.members.cache.get(user.id).roles.add(colorRole)
-        message.channel.send('You have bought access to change your server color for 5,000 coins!')
+        message.channel.send('You have bought access to change your server color for 5,000 coins! Use \`-colors\` to enable your own chat color.')
     }
 }
 }
