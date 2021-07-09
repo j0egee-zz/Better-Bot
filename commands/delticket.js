@@ -18,7 +18,7 @@ module.exports = {
 
         message.channel.send("Deleting this channel in 5 seconds!");
         setTimeout(() => message.channel.delete(), 5000);
-        message.guild.channels.cache.get('860961443393830912').send(deleteEmbed)
+        message.guild.channels.cache.get('863157013567373332').send(deleteEmbed)
         }
         
     }
