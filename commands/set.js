@@ -18,7 +18,8 @@ module.exports = {
             if(!targetData) return message.channel.send(`That user doesn't have any data. Please use \`-createdata <user>\``);
 
                 await profileModel.findOneAndUpdate({
-                    userID: target.id
+                    userID: target.id,
+                    serverID: message.guild.id
                 }, {
                     $set:{
                         coins: amount,

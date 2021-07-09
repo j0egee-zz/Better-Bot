@@ -15,8 +15,8 @@ module.exports = {
 
         if(target.id === user.id)return message.channel.send(`You can not pay yourself!`);
 
-        let userData = await profileModel.findOne({ userID: user.id})
-        let targetData = await profileModel.findOne({ userID: target.id})
+        let userData = await profileModel.findOne({ userID: user.id}, {serverID: message.guild.id})
+        let targetData = await profileModel.findOne({ userID: target.id}, {serverID: message.guild.id})
   
         if(amount % 1 != 0 || amount <= 0) return message.channel.send('The pay amount must be a whole number grader then 0.');
         
@@ -54,7 +54,8 @@ module.exports = {
                 message.channel.send(payEmbed);
 
             await profileModel.findOneAndUpdate({
-                userID: message.author.id
+                userID: message.author.id,
+                serverID: message.guild.id
             }, {
                 $set:{
                     coins: userData.coins - amount,
@@ -62,7 +63,8 @@ module.exports = {
             } 
             );
                 await profileModel.findOneAndUpdate({
-                    userID: target.id
+                    userID: target.id,
+                    serverID: message.guild.id
                 }, {
                     $inc:{
                         coins: amount,

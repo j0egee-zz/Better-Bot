@@ -8,6 +8,7 @@ module.exports = {
         const randomNumber = Math.floor(Math.random() * 500) + 1;
         const response = await profileModel.findOneAndUpdate({
             userID: message.author.id,
+            serverID: message.guild.id
         }, {
             $inc: {
                 coins: randomNumber,

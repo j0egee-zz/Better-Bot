@@ -14,11 +14,12 @@ module.exports = {
         if(amount % 1 != 0 || amount <= 0) return message.channel.send('The give amount must be a whole number grater then 0.');
 
         try{
-            const targetData = await profileModel.findOne({ userID: target.id});
+            const targetData = await profileModel.findOne({ userID: target.id},{serverID: message.guild.id});
             if(!targetData) return message.channel.send(`That user doesn't have any data. Please use \`-createdata <user>\``);
 
                 await profileModel.findOneAndUpdate({
-                    userID: target.id
+                    userID: target.id,
+                    serverID: message.guild.id
                 }, {
                     $inc:{
                         coins: amount,

@@ -15,7 +15,8 @@ module.exports = {
         if(userData.coins < 5000)return message.channel.send('You do not have enough coins to buy this.')
         else{
         await profileModel.findOneAndUpdate({
-            userID: message.author.id
+            userID: message.author.id,
+            serverID: message.guild.id
         }, {
             $set:{
                 coins: userData.coins - 5000,
