@@ -5,7 +5,7 @@ module.exports = {
     description: "This is a ping command!",
     execute(client, message, args, Discord) {
 
-        if (message.member.roles.cache.has('849438809359646751')) {
+        if (message.member.roles.cache.has('863160410097057793')) {
 
             message.channel.send('pong!');
         }

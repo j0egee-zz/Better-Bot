@@ -12,7 +12,7 @@ module.exports = {
         const purpleColorRole = message.guild.roles.cache.find(role => role.name === "Color - Purple");
         const whiteColorRole = message.guild.roles.cache.find(role => role.name === "Color - White");
 
-        if(!message.member.roles.cache.has('862174821471354890'))return message.channel.send('You must buy access to colors first. Use \`-shop\`.');
+        if(!message.member.roles.cache.has('863161193781788683'))return message.channel.send('You must buy access to colors first. Use \`-shop\`.');
         else{
 
         const colorEmbed = new Discord.MessageEmbed()

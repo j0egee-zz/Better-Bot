@@ -7,11 +7,11 @@ module.exports = {
 
         const blackColorRole = message.guild.roles.cache.find(role => role.name === "Color - Black");
 
-        if(!message.member.roles.cache.has('862174821471354890'))return message.channel.send('You must buy access to colors first. Use \`-shop\`.');
+        if(!message.member.roles.cache.has('863161193781788683'))return message.channel.send('You must buy access to colors first. Use \`-shop\`.');
         else{
 
-            if(!message.member.roles.cache.has('849825645353893948')) return message.guild.members.cache.get(message.author.id).roles.add(blackColorRole), message.reply('You now have the black color role.');
-            if(message.member.roles.cache.has('849825645353893948')) return message.guild.members.cache.get(message.author.id).roles.remove(blackColorRole), message.reply('You no longer have the black color role.');
+            if(!message.member.roles.cache.has('863160783097430027')) return message.guild.members.cache.get(message.author.id).roles.add(blackColorRole), message.reply('You now have the black color role.');
+            if(message.member.roles.cache.has('863160783097430027')) return message.guild.members.cache.get(message.author.id).roles.remove(blackColorRole), message.reply('You no longer have the black color role.');
 
         }
     }

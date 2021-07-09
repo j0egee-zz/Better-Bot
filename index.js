@@ -16,7 +16,7 @@ client.on("ready", async () => {
 
 client.on('guildMemberAdd', guildMember => {
 
-    guildMember.guild.channels.cache.get('849819656000897045').send(`Welcome <@${guildMember.user.id}> to the **Better Bot Support Server**! Please read over <#849658278237831208> :)`)
+    guildMember.guild.channels.cache.get('863163477854257162').send(`Welcome <@${guildMember.user.id}> to the **AD Center Discord Server**! Please read over <#863155069243228161> :)`)
 });
 
 ['command_handler', 'event_handler'].forEach(handler => {

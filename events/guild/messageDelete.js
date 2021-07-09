@@ -8,6 +8,6 @@ module.exports = async(message, Discord) =>{
     .setDescription(`${message.author}'s message was deleted in ${message.channel}`)
     .addField(`Message content`,message.content)
 
-    let logs = message.guild.channels.cache.get('849850651218411530')
+    let logs = message.guild.channels.cache.get('863156995201040384')
     logs.send(embed)
 }

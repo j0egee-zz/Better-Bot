@@ -10,6 +10,6 @@ module.exports = async(oldMessage, newMessage, Discord)=>{
     .addField(`Old message`,oldMessage.content)
     .addField(`New message`,newMessage.content)
 
-    let logs = oldMessage.guild.channels.cache.get('849850651218411530')
+    let logs = oldMessage.guild.channels.cache.get('863156995201040384')
     logs.send(embed)
 }

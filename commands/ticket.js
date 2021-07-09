@@ -11,7 +11,7 @@ const modRole = message.guild.roles.cache.find(role => role.name === 'Moderator'
 const adminRole = message.guild.roles.cache.find(role => role.name === 'Admin');
 const channel = await message.guild.channels.create(`ticket-${message.author.username}`)
 
-await channel.setParent('849355248413704212');
+await channel.setParent('863160325868093440');
 console.log(channel.parentID);
 
     channel.updateOverwrite(message.guild.id, {'SEND_MESSAGES': false, 'VIEW_CHANNEL': false});
@@ -35,7 +35,7 @@ console.log(channel.parentID);
         .setTitle(`${message.author.username}`)
         .setDescription(`Has created a ticket ${channel}`);
 
-    message.guild.channels.cache.get('860961443393830912').send(createEmbed)
+    message.guild.channels.cache.get('863157013567373332').send(createEmbed)
 
     message.channel.send(new Discord.MessageEmbed()
         .setColor('fadf2e')

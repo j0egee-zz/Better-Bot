@@ -10,7 +10,7 @@ module.exports = {
         const user = message.author
         const colorRole = message.guild.roles.cache.find(role => role.name === "Colors Permitted");
 
-        if(message.member.roles.cache.has('862174821471354890'))return message.channel.send('You already bought this.')
+        if(message.member.roles.cache.has('863161193781788683'))return message.channel.send('You already bought this.')
 
         if(userData.coins < 5000)return message.channel.send('You do not have enough coins to buy this.')
         else{
