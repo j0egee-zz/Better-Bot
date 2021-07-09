@@ -14,6 +14,7 @@ module.exports = {
             .addField(`-suggestion`, `Create a suggestion for the server.`)
             .addField(`-ticket`, `Create a ticket in this server.`)
             .addField(`-shop`, `Bring up the shop page.`)
+            .addField(`-color`, `Set your own chat color.`)
             .setDescription(`Click the 📈 reaction to view the admin commands.`)
 
             let messageEmbed = await message.channel.send(embed);
@@ -37,12 +38,10 @@ module.exports = {
                         .setFooter(`Bot created by j0egee#0001`, "https://cdn.discordapp.com/attachments/845366607080456265/861746867008569384/Untitled_Artwork_3.png")
                         .setTitle(`Admin Better Bot help page`)
                         .addField(`-bc`, `Broadcast a message to any channel in the server.`)
-                        .addField(`-colorrole`, `Send a message that members can react to to gain a color role.`)
                         .addField(`-createdata`, `Create user data for a member in the server if the bot failed to.`)
                         .addField(`-dm`, `Send a direct message to a member in the server form the bot.`)
                         .addField(`-give`, `Give a member in the server a ceritan amount of coins.`)
                         .addField(`-mute`, `Perminatly or temperarlly mute a member in the server.`)
-                        .addField(`-pingroles`, `Send a messane that members can react to to gain roles they want to get pinged for.`)
                         .addField(`-say`, `Make the bot send a normal message to any channel in the server.`)
                         .addField(`-unmute`, `Remove a mute form a member in the server.`)
                         .addField(`-userinfo`, `Get the user infomation for a user in the server.`)
