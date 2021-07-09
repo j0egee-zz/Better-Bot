@@ -2,7 +2,7 @@ module.exports = {
     name: "balance",
     aliases: ["bal", "money"],
     permissions: [],
-    cooldown: 0.3,
+    cooldown: 0.1,
     description: "Check the user balance",
     execute(client, message, cmd, args, Discord, profileData) {
         const embed = new Discord.MessageEmbed()
