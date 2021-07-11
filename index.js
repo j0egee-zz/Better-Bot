@@ -45,7 +45,7 @@ client.on("message", async(message, guild, Discord) =>{
         .setAuthor(`New DM from ${message.author.tag} (${message.author.id})`, message.author.displayAvatarURL({ dynamic: true }))
         .setDescription(`${message.content}`)
 
-        const DMC = client.channels.cache.get('849850651218411530')
+        const DMC = client.channels.cache.get('863156995201040384')
         DMC.send(dmEmbed)
     }
 })
