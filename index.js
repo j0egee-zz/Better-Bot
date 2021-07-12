@@ -6,7 +6,6 @@ const mongoose = require('mongoose');
 const fs = require('fs');
 
 const memberCounter = require('./counters/member-counter');
-const DisTube = require('distube');
 
 client.commands = new Discord.Collection();
 client.events = new Discord.Collection();
