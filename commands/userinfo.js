@@ -9,7 +9,7 @@ module.exports = {
         if (message.content.startsWith('-userinfo')) {
         var pfpMember = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.member;
         
-        const userData = await profileModel.findOne({ userID: pfpMember.id}, {serverID: message.guild.id});
+        const userData = await profileModel.findOne({ userID: pfpMember.id, serverID: message.guild.id});
 
         if(!userData)return message.channel.send('An error has occured. This user is most likely not in my system yet. Please use the \`-createdata\` command!');
         

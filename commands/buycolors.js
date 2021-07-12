@@ -6,7 +6,7 @@ module.exports = {
     cooldown: 0.1,
     description: "Buy access to change your server color.",
     async execute(client, message, cmd, args, Discord, profileData) {
-        let userData = await profileModel.findOne({ userID: message.author.id})
+        let userData = await profileModel.findOne({ userID: message.author.id, serverID: message.guild.id})
         const user = message.author
         const colorRole = message.guild.roles.cache.find(role => role.name === "Colors Permitted");
 

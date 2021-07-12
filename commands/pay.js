@@ -15,8 +15,8 @@ module.exports = {
 
         if(target.id === user.id)return message.channel.send(`You can not pay yourself!`);
 
-        let userData = await profileModel.findOne({ userID: user.id}, {serverID: message.guild.id})
-        let targetData = await profileModel.findOne({ userID: target.id}, {serverID: message.guild.id})
+        let userData = await profileModel.findOne({ userID: user.id, serverID: message.guild.id})
+        let targetData = await profileModel.findOne({ userID: target.id, serverID: message.guild.id})
   
         if(amount % 1 != 0 || amount <= 0) return message.channel.send('The pay amount must be a whole number grader then 0.');
         
