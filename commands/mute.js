@@ -8,7 +8,7 @@ module.exports = {
     execute(client, message, cmd, args, Discord, profileData) {
         const target = message.mentions.users.first();
 
-            
+
         if (target) {
             let muteRole = message.guild.roles.cache.find(role => role.name === 'Muted');
 

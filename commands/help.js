@@ -17,23 +17,23 @@ module.exports = {
             .addField(`-color`, `Set your own chat color.`)
             .setDescription(`Click the 📈 reaction to view the admin commands.`)
 
-            let messageEmbed = await message.channel.send(embed);
+        let messageEmbed = await message.channel.send(embed);
 
-            messageEmbed.react(`📈`)
+        messageEmbed.react(`📈`)
 
-            const adminEmoji = `📈`
+        const adminEmoji = `📈`
 
-            client.on('messageReactionAdd', async (reaction, user) => {
-                if (reaction.message.partial) await reaction.message.fetch();
-                if (reaction.partial) await reaction.fetch();
-                if (user.bot) return;
-                if (!reaction.message.guild) return;
-        
-                if (reaction.message.guild.id == message.guild.id) {
-        
-                    if (reaction.emoji.name === adminEmoji) {
+        client.on('messageReactionAdd', async (reaction, user) => {
+            if (reaction.message.partial) await reaction.message.fetch();
+            if (reaction.partial) await reaction.fetch();
+            if (user.bot) return;
+            if (!reaction.message.guild) return;
 
-                        const adminEmbed = new Discord.MessageEmbed()
+            if (reaction.message.guild.id == message.guild.id) {
+
+                if (reaction.emoji.name === adminEmoji) {
+
+                    const adminEmbed = new Discord.MessageEmbed()
                         .setColor('FADF2E')
                         .setFooter(`Bot created by j0egee#0001`, "https://cdn.discordapp.com/attachments/845366607080456265/861746867008569384/Untitled_Artwork_3.png")
                         .setTitle(`Admin Better Bot help page`)
@@ -47,11 +47,11 @@ module.exports = {
                         .addField(`-userinfo`, `Get the user infomation for a user in the server.`)
                         .addField(`-set`, `Set a users coin balance.`)
 
-                        await message.channel.send(adminEmbed);
-                        messageEmbed.delete()
-                     }
-                 }
+                    await message.channel.send(adminEmbed);
+                    messageEmbed.delete()
+                }
             }
+        }
         )
     }
 }

@@ -11,6 +11,6 @@ module.exports = {
             .addField(`-buyColors`, `*5,000 coins*\nBuy access to change your server color.`)
             .addField(`-buy`)
 
-            message.channel.send(embed)
+        message.channel.send(embed)
     }
 }

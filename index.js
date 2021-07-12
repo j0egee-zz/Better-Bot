@@ -11,7 +11,7 @@ client.commands = new Discord.Collection();
 client.events = new Discord.Collection();
 
 client.on("ready", async () => {
-    client.user.setActivity("your server | -help", {type: "WATCHING"})
+    client.user.setActivity("your server | -help", { type: "WATCHING" })
 })
 
 client.on('guildMemberAdd', guildMember => {
@@ -27,23 +27,23 @@ mongoose.connect('mongodb+srv://j0egee:BetterBot4Life@better-bot.tbfne.mongodb.n
     useNewUrlParser: true,
     useFindAndModify: false,
     useUnifiedTopology: true
-}).then(()=>{
+}).then(() => {
     console.log('Connected to the database.');
 }).catch((err) => {
     console.log(err);
 });
 
-client.on("message", async(message, guild, Discord) =>{
+client.on("message", async (message, guild, Discord) => {
 
-    const {MessageEmbed} = require('discord.js')
+    const { MessageEmbed } = require('discord.js')
 
-    if(message.channel.type === "dm" && !message.author.bot){
+    if (message.channel.type === "dm" && !message.author.bot) {
         const dmEmbed = new MessageEmbed()
-        .setColor('FADF2E')
-        .setTimestamp(Date.now())
-        .setFooter(`Bot created by j0egee#0001`, "https://cdn.discordapp.com/attachments/845366607080456265/861746867008569384/Untitled_Artwork_3.png")
-        .setAuthor(`New DM from ${message.author.tag} (${message.author.id})`, message.author.displayAvatarURL({ dynamic: true }))
-        .setDescription(`${message.content}`)
+            .setColor('FADF2E')
+            .setTimestamp(Date.now())
+            .setFooter(`Bot created by j0egee#0001`, "https://cdn.discordapp.com/attachments/845366607080456265/861746867008569384/Untitled_Artwork_3.png")
+            .setAuthor(`New DM from ${message.author.tag} (${message.author.id})`, message.author.displayAvatarURL({ dynamic: true }))
+            .setDescription(`${message.content}`)
 
         const DMC = client.channels.cache.get('863156995201040384')
         DMC.send(dmEmbed)
@@ -51,10 +51,10 @@ client.on("message", async(message, guild, Discord) =>{
 })
 
 
-client.on('messageUpdate', async(oldMessage, newMessage, Discord)=>{
+client.on('messageUpdate', async (oldMessage, newMessage, Discord) => {
     require('./events/guild/messageUpdate')(oldMessage, newMessage)
 })
-client.on('messageDelete', async(message, Discord)=>{
+client.on('messageDelete', async (message, Discord) => {
     require('./events/guild/messageDelete')(message)
 })
 
