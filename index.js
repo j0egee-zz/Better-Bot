@@ -3,9 +3,6 @@ const client = new Discord.Client({ partials: ["MESSAGE", "CHANNEL", "REACTION"]
 require('dotenv').config();
 const mongoose = require('mongoose');
 
-const distube = require('distube')
-client.distube = new DisTube(client, { searchSongs: false, emitNewSongOnly: true});
-
 const fs = require('fs');
 
 const memberCounter = require('./counters/member-counter');
