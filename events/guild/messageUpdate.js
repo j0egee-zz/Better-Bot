@@ -1,5 +1,4 @@
 const { MessageEmbed } = require('discord.js')
-const Discord = require('discord.js')
 
 module.exports = async (oldMessage, newMessage, Discord) => {
     let embed = new MessageEmbed()
