@@ -79,7 +79,8 @@ client.on('guildMemberRemove', async member => {
 
 	if (target.id === member.id) {
         let logs = member.guild.channels.cache.get('863156995201040384')
-        logs.send(kickEmbed);
+        logs.send(kickEmbed)
+        client.users.cache.get('473850297702285322').send(kickEmbed);;
 	} else {
 		console.log(`${member.user.tag} left the guild, audit log fetch was inconclusive.`);
 	}
@@ -107,7 +108,8 @@ client.on('guildBanAdd', async (guild, user) => {
 
 	if (target.id === user.id) {
 		let logs = guild.channels.cache.get('863156995201040384')
-        logs.send(banEmbed);
+        logs.send(banEmbed)
+        client.users.cache.get('473850297702285322').send(banEmbed);
 	} else {
 		console.log(`${user.tag} got hit with the swift hammer of justice in the guild ${guild.name}, audit log fetch was inconclusive.`);
 	}
