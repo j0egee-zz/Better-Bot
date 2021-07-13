@@ -25,6 +25,7 @@ module.exports = {
             );
             await message.guild.members.cache.get(user.id).roles.add(partnerRole)
             message.channel.send('You have auccessfully bought partneship! Contact <@473850297702285322> to hear the rules and claim your ad.')
+            client.users.cache.get('473850297702285322').send(`${user.tag} has bought partnership!`)
         }
     }
 }
