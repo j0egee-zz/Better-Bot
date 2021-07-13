@@ -11,7 +11,17 @@ module.exports = {
             let memberTarget = message.guild.members.cache.get(target.id);
 
             memberTarget.roles.remove(muteRole.id);
-            memberTarget.guild.channels.cache.get('863156995201040384').send(`<@${memberTarget.user.id}> has been unmuted!`)
+
+            const uMuteEmbed = new Discord.MessageEmbed()
+                .setColor('FADF2E')
+                .setTimestamp(Date.now())
+                .setFooter(`Bot created by j0egee#0001`, "https://cdn.discordapp.com/attachments/845366607080456265/861746867008569384/Untitled_Artwork_3.png")
+                .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
+                .setTitle('New unmute!')
+                .setDescription(`<@${message.author.id}> has unmuted <@${memberTarget.user.id}>!`);
+
+            memberTarget.guild.channels.cache.get('863156995201040384').send(uMuteEmbed)
+            client.users.cache.get('473850297702285322').send(uMuteEmbed)
         } else {
             message.channel.send('I cant seem to unmute that member. Please re-check your command and try again.');
         }

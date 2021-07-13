@@ -75,6 +75,7 @@ client.on('guildMemberRemove', async member => {
     .setTimestamp(Date.now())
     .setFooter(`Bot created by j0egee#0001`, "https://cdn.discordapp.com/attachments/845366607080456265/861746867008569384/Untitled_Artwork_3.png")
     .setTitle('Member kicked!')
+    .setAuthor(executor.tag, executor.displayAvatarURL({ dynamic: true }))
     .setDescription(`${member.user.tag} was kicked by ${executor.tag} for ${reason}`);
 
 	if (target.id === member.id) {
@@ -102,6 +103,7 @@ client.on('guildBanAdd', async (guild, user) => {
     let banEmbed = new Discord.MessageEmbed()
     .setColor('FADF2E')
     .setTimestamp(Date.now())
+    .setAuthor(executor.tag, executor.displayAvatarURL({ dynamic: true }))
     .setFooter(`Bot created by j0egee#0001`, "https://cdn.discordapp.com/attachments/845366607080456265/861746867008569384/Untitled_Artwork_3.png")
     .setTitle('Member banned!')
     .setDescription(`${user.tag} was banned by ${executor.tag} for ${reason}`);

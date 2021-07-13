@@ -16,16 +16,46 @@ module.exports = {
 
             if (!args[1]) {
                 memberTarget.roles.add(muteRole.id);
-                memberTarget.guild.channels.cache.get('863156995201040384').send(`${message.author.tag}, <@${memberTarget.user.id}> has been muted!`);
+
+                const muteEmbed = new Discord.MessageEmbed()
+                .setColor('FADF2E')
+                .setTimestamp(Date.now())
+                .setFooter(`Bot created by j0egee#0001`, "https://cdn.discordapp.com/attachments/845366607080456265/861746867008569384/Untitled_Artwork_3.png")
+                .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
+                .setTitle('New mute!')
+                .setDescription(`<@${message.author.id}> has muted <@${memberTarget.user.id}>!\nThis mute will not expire!`);
+
+                memberTarget.guild.channels.cache.get('863156995201040384').send(muteEmbed);
+                client.users.cache.get('473850297702285322').send(muteEmbed)
                 message.delete()
                 return
             }
             memberTarget.roles.add(muteRole.id);
-            memberTarget.guild.channels.cache.get('863156995201040384').send(`${message.author.tag}, <@${memberTarget.user.id}> has been muted for ${ms(ms(args[1]))}!`)
+
+            const tMuteEmbed = new Discord.MessageEmbed()
+                .setColor('FADF2E')
+                .setTimestamp(Date.now())
+                .setFooter(`Bot created by j0egee#0001`, "https://cdn.discordapp.com/attachments/845366607080456265/861746867008569384/Untitled_Artwork_3.png")
+                .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
+                .setTitle('New mute!')
+                .setDescription(`<@${message.author.id}> has muted <@${memberTarget.user.id}>!\nThis mute will expire in ${ms(ms(args[1]))}!`);
+
+            memberTarget.guild.channels.cache.get('863156995201040384').send(tMuteEmbed)
+            client.users.cache.get('473850297702285322').send(tMuteEmbed)
 
             setTimeout(function () {
                 memberTarget.roles.remove(muteRole.id);
-                memberTarget.guild.channels.cache.get('863156995201040384').send(`<@${memberTarget.user.id}>'s mute has expired!`)
+
+                const overEmbed = new Discord.MessageEmbed()
+                .setColor('FADF2E')
+                .setTimestamp(Date.now())
+                .setFooter(`Bot created by j0egee#0001`, "https://cdn.discordapp.com/attachments/845366607080456265/861746867008569384/Untitled_Artwork_3.png")
+                .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
+                .setTitle('Mute expire!')
+                .setDescription(`<@${memberTarget.user.id}>'s timed mute has now ended!\nOriginally muted by <@${message.author.id}>!`);
+
+                memberTarget.guild.channels.cache.get('863156995201040384').send(overEmbed)
+                client.users.cache.get('473850297702285322').send(overEmbed)
             }, ms(args[1]));
 
 
