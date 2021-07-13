@@ -58,4 +58,60 @@ client.on('messageDelete', async (message, Discord) => {
     require('./events/guild/messageDelete')(message)
 })
 
+client.on('guildMemberRemove', async member => {
+	const fetchedLogs = await member.guild.fetchAuditLogs({
+		limit: 1,
+		type: 'MEMBER_KICK',
+	});
+
+	const kickLog = fetchedLogs.entries.first();
+
+	if (!kickLog) return console.log(`${member.user.tag} left the guild, most likely of their own will.`);
+
+	const { executor, target, reason } = kickLog;
+
+    let kickEmbed = new Discord.MessageEmbed()
+    .setColor('FADF2E')
+    .setTimestamp(Date.now())
+    .setFooter(`Bot created by j0egee#0001`, "https://cdn.discordapp.com/attachments/845366607080456265/861746867008569384/Untitled_Artwork_3.png")
+    .setTitle('Member kicked!')
+    .setDescription(`${member.user.tag} was kicked by ${executor.tag} for ${reason}`);
+
+	if (target.id === member.id) {
+        let logs = member.guild.channels.cache.get('863156995201040384')
+        logs.send(kickEmbed);
+	} else {
+		console.log(`${member.user.tag} left the guild, audit log fetch was inconclusive.`);
+	}
+});
+
+
+client.on('guildBanAdd', async (guild, user) => {
+	const fetchedLogs = await guild.fetchAuditLogs({
+		limit: 1,
+		type: 'MEMBER_BAN_ADD',
+	});
+
+	const banLog = fetchedLogs.entries.first();
+
+	if (!banLog) return console.log(`${user.tag} was banned from ${guild.name} but no audit log could be found.`);
+
+	const { executor, target, reason } = banLog;
+
+    let banEmbed = new Discord.MessageEmbed()
+    .setColor('FADF2E')
+    .setTimestamp(Date.now())
+    .setFooter(`Bot created by j0egee#0001`, "https://cdn.discordapp.com/attachments/845366607080456265/861746867008569384/Untitled_Artwork_3.png")
+    .setTitle('Member banned!')
+    .setDescription(`${user.tag} was banned by ${executor.tag} for ${reason}`);
+
+	if (target.id === user.id) {
+		let logs = guild.channels.cache.get('863156995201040384')
+        logs.send(banEmbed);
+	} else {
+		console.log(`${user.tag} got hit with the swift hammer of justice in the guild ${guild.name}, audit log fetch was inconclusive.`);
+	}
+});
+
+
 client.login('ODQ5MzcyNDIzMDY5MjM3Mjg4.YLaNtg.-Vx1wzHZAfHTaMfgaQGzHXeC2L4');
