@@ -46,6 +46,8 @@ module.exports = {
                         .addField(`-unmute`, `Remove a mute form a member in the server.`)
                         .addField(`-userinfo`, `Get the user infomation for a user in the server.`)
                         .addField(`-set`, `Set a users coin balance.`)
+                        .addField(`-giveaway`, `Start a server wide giveaway.`)
+                        .addField(`-clear`, `Clear a certian number of messages in chat.`)
 
                     await message.channel.send(adminEmbed);
                     messageEmbed.delete()
