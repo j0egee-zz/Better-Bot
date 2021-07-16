@@ -3,7 +3,7 @@ const ms = require('ms')
 
 module.exports = {
     name: "giveaway",
-    aliases: [],
+    aliases: ["reroll"],
     permissions: ['ADMINISTRATOR'],
     cooldown: 0,
     description: "Start a giveaway!",
@@ -11,9 +11,9 @@ module.exports = {
         let timeVal = message.content.slice(prefix.length + 9)
         if (!timeVal) return message.channel.send('You must say a time **in MS**!')
         let time = parseInt(timeVal, 10)
-        //if (time < 15000) {
-        //    return message.channel.send('Time needs to be longer then 15 sec!')
-        //}
+        if (time < 15000) {
+           return message.channel.send('Time needs to be longer then 15 sec!')
+        }
         let prize = message.content.split(`${time}`).join("").split(`${prefix}giveaway  `).join("")
         if (!prize) return message.channel.send(`You must say the prize of the giveaway!`)
         const embed = new Discord.MessageEmbed()
@@ -27,7 +27,7 @@ module.exports = {
             let msg = await message.channel.send(embed)
             await msg.react('🎉')
             function winner(msg){
-                let winner = msg.reactions.cache.get('🎉').users.cache.random().id
+                let winner = msg.reactions.cache.get('🎉').users.cache.filter(u=> !u.bot).random().id
                 return winner
             };
             function reactions(msg){
