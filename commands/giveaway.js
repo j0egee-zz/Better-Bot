@@ -3,7 +3,7 @@ const ms = require('ms')
 
 module.exports = {
     name: "giveaway",
-    aliases: ["reroll"],
+    aliases: [],
     permissions: ['ADMINISTRATOR'],
     cooldown: 0,
     description: "Start a giveaway!",
@@ -34,8 +34,8 @@ module.exports = {
                 return msg.reactions.cache.size
             }
             setTimeout(() =>{
-                    if(reactions(msg) <= 5)return message.channel.send('I can not host a giveaway if there are less then 5 participants!')
-                    message.channel.send(`The winer of **"${prize}"** is <@${winner(msg)}>`)
+                    if(reactions(msg) <= 3)return message.channel.send('I can not host a giveaway if there are less then 3 participants!')
+                    message.channel.send(`The winer of **"${prize}"** is <@${winner(msg)}>! Please contact <@${message.author.id}> for your prize!`)
             }, time);
     }
 }
