@@ -15,6 +15,7 @@ module.exports = {
             .addField(`-ticket`, `Create a ticket in this server.`)
             .addField(`-shop`, `Bring up the shop page.`)
             .addField(`-color`, `Set your own chat color.`)
+            .addField(`-apply`, `Apply for staff on this server!`)
             .setDescription(`Click the 📈 reaction to view the admin commands.`)
 
         let messageEmbed = await message.channel.send(embed);
