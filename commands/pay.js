@@ -15,8 +15,8 @@ module.exports = {
 
         if (target.id === user.id) return message.channel.send(`You can not pay yourself!`);
 
-        let userData = await profileModel.findOne({ userID: user.id, serverID: message.guild.id })
-        let targetData = await profileModel.findOne({ userID: target.id, serverID: message.guild.id })
+        let userData = await profileModel.findOne({ userID: user.id, serverID: message.guild.id });
+        let targetData = await profileModel.findOne({ userID: target.id, serverID: message.guild.id });
 
         if (amount % 1 != 0 || amount <= 0) return message.channel.send('The pay amount must be a whole number grader then 0.');
 
@@ -28,7 +28,7 @@ module.exports = {
             .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
             .setDescription(`Please react with the ✅ to confirm your payment of **${amount} coins** to ${target}.\n\n*Once you confirm there is no going back.*`);
 
-        if (userData.coins < amount) return message.channel.send('You do not have enough money to pay that user with.')
+        if (userData.coins < amount) return message.channel.send('You do not have enough money to pay that user with.');
 
         else {
 
@@ -40,6 +40,7 @@ module.exports = {
                 if (user.bot) return;
                 if (!reaction.message.guild) return;
                 if (user !== message.author) return;
+                if (reaction.message.id !== messageEmbed.id) return;
 
                 if (reaction.emoji.name === `✅`) {
 
