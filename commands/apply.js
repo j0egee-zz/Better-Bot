@@ -7,7 +7,7 @@ module.exports = {
     async execute(client, message, cmd, args, Discord, profileData) {
 
         message.reply('Ill start the application process in a DM. If you are not accepting DM from members in this server, please enable that now and try again.');
-        message.author.send(`Welcome to your application for staff on the AD Center server! Lets get started!`);
+        message.author.send(`**Welcome to your application for staff on the AD Center server! Lets get started!**`);
 
         const questions = [
             "How old are you?",
@@ -33,7 +33,7 @@ module.exports = {
             if (collectCounter < questions.length) {
                 channel.send(questions[collectCounter++]);
             } else {
-                channel.send('Your application has successfully been sent! You will hear back from leadership soon!')
+                channel.send('**Your application has successfully been sent! You will hear back from me soon! So make sure you are still accepting DM\`s from me!**')
                 collector.stop("fulfilled");
             }
         });
