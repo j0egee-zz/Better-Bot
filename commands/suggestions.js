@@ -10,6 +10,8 @@ module.exports = {
 
         let messageArgs = args.join(' ');
 
+        if (message.member.roles.cache.has('866922320324329472')) return message.reply('You are banned from making suggestions in this server!');
+
         if (!messageArgs) return message.channel.send('You must say your suggestion.');
 
         const embed = new Discord.MessageEmbed()

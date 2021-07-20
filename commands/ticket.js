@@ -6,13 +6,14 @@ module.exports = {
     description: 'Creates a ticket!',
     async execute(client, message, cmd, args, Discord, profileData) {
 
+        if (message.member.roles.cache.has('866922287072673812')) return message.reply('You are banned from making tickets in this server!');
+
         const ownerRole = message.guild.roles.cache.find(role => role.name === 'Owner');
         const modRole = message.guild.roles.cache.find(role => role.name === 'Moderator');
         const adminRole = message.guild.roles.cache.find(role => role.name === 'Admin');
         const channel = await message.guild.channels.create(`ticket-${message.author.username}`)
 
         await channel.setParent('863160325868093440');
-        console.log(channel.parentID);
 
         channel.updateOverwrite(message.guild.id, { 'SEND_MESSAGES': false, 'VIEW_CHANNEL': false });
         channel.updateOverwrite(message.author, { 'SEND_MESSAGES': true, 'VIEW_CHANNEL': true });
