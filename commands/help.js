@@ -16,6 +16,7 @@ module.exports = {
             .addField(`-suggestion`, `Create a suggestion for the server.`)
             .addField(`-shop`, `Bring up the shop page.`)
             .addField(`-ticket`, `Create a ticket in this server.`)
+            .addField(`-wiki`, `Show out helpful wiki pages.`)
             .setDescription(`Click the 📈 reaction to view the admin commands.`)
 
         let messageEmbed = await message.channel.send(embed);
