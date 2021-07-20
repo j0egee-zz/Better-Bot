@@ -11,7 +11,7 @@ client.commands = new Discord.Collection();
 client.events = new Discord.Collection();
 
 client.on("ready", async () => {
-    client.user.setActivity("your server | -help", { type: "WATCHING" })
+    client.user.setActivity("you | -help | -wiki", { type: "WATCHING" })
 })
 
 client.on('guildMemberAdd', guildMember => {
