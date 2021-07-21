@@ -65,8 +65,9 @@ client.on("guildMemberUpdate", async (oldMember, newMember) => {
         const Embed = new Discord.MessageEmbed();
         Embed.setColor('FADF2E');
         Embed.setTimestamp(Date.now());
+        Embed.setTitle(`Member updated!`);
         Embed.setFooter(`Bot created by j0egee#0001`, "https://cdn.discordapp.com/attachments/845366607080456265/861746867008569384/Untitled_Artwork_3.png");
-        Embed.setAuthor(`${newMember.user.tag}`, `${newMember.user.displayAvatarURL({ format: "png", dynamic: true })}`);
+        Embed.addField(`Member`,`<@${newMember.user.id}>`);
 
         const fetchedLogs = await oldMember.guild.fetchAuditLogs({
             limit: 1,
@@ -88,9 +89,10 @@ client.on("guildMemberUpdate", async (oldMember, newMember) => {
     } else if (oldMember.roles.cache.size < newMember.roles.cache.size) {
         const Embed = new Discord.MessageEmbed();
         Embed.setColor('FADF2E');
+        Embed.setTitle(`Member updated!`);
         Embed.setTimestamp(Date.now());
         Embed.setFooter(`Bot created by j0egee#0001`, "https://cdn.discordapp.com/attachments/845366607080456265/861746867008569384/Untitled_Artwork_3.png");
-        Embed.setAuthor(`${newMember.user.tag}`, `${newMember.user.displayAvatarURL({ format: "png", dynamic: true })}`);
+        Embed.addField(`Member`,`<@${newMember.user.id}>`);
 
         const fetchedLogs = await oldMember.guild.fetchAuditLogs({
             limit: 1,
@@ -113,7 +115,7 @@ client.on("guildMemberUpdate", async (oldMember, newMember) => {
     if (!oldMember.nickname && newMember.nickname) {
         const membernewnicklog = new Discord.MessageEmbed()
             .setAuthor(`${newMember.user.tag}`, `${newMember.user.displayAvatarURL({ format: "png", dynamic: true })}`)
-            .setDescription(`**${newMember} nickname added**`)
+            .setTitle(`Member updated!`)
             .setColor('FADF2E')
             .setTimestamp(Date.now())
             .setFooter(`Bot created by j0egee#0001`, "https://cdn.discordapp.com/attachments/845366607080456265/861746867008569384/Untitled_Artwork_3.png")
@@ -124,23 +126,23 @@ client.on("guildMemberUpdate", async (oldMember, newMember) => {
     if (oldMember.nickname && !newMember.nickname) {
         const memberremovenicklog = new Discord.MessageEmbed()
             .setAuthor(`${oldMember.user.tag}`, `${oldMember.user.displayAvatarURL({ format: "png", dynamic: true })}`)
-            .setDescription(`**${oldMember} nickname removed**`)
+            .setTitle(`Member updated!`)
             .setColor('FADF2E')
             .setTimestamp(Date.now())
             .setFooter(`Bot created by j0egee#0001`, "https://cdn.discordapp.com/attachments/845366607080456265/861746867008569384/Untitled_Artwork_3.png")
-            .addField("Old nickname", oldMember.nickname)
+            .addField("Removed nickname", oldMember.nickname)
         client.channels.cache.get('863156995201040384').send(memberremovenicklog);
         return;
     }
     if (oldMember.nickname && newMember.nickname) {
         const memberchangednicklog = new Discord.MessageEmbed()
             .setAuthor(`${newMember.user.tag}`, `${newMember.user.displayAvatarURL({ format: "png", dynamic: true })}`)
-            .setDescription(`**${newMember} nickname changed**`)
+            .setTitle(`Member updated!`)
             .setColor('FADF2E')
             .setTimestamp(Date.now())
             .setFooter(`Bot created by j0egee#0001`, "https://cdn.discordapp.com/attachments/845366607080456265/861746867008569384/Untitled_Artwork_3.png")
-            .addField("Before", oldMember.nickname)
-            .addField("After", newMember.nickname);
+            .addField("Nickname before", oldMember.nickname)
+            .addField("Nickname after", newMember.nickname);
         client.channels.cache.get('863156995201040384').send(memberchangednicklog);
         return;
     }
