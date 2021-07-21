@@ -58,7 +58,7 @@ client.on('messageDelete', async (message, Discord) => {
     require('./events/guild/messageDelete')(message)
 })
 
-client.on("guildMemberUpdate", (oldMember, newMember) => {
+client.on("guildMemberUpdate", async (oldMember, newMember) => {
 
     if (oldMember.roles.cache.size > newMember.roles.cache.size) {
 
@@ -68,9 +68,19 @@ client.on("guildMemberUpdate", (oldMember, newMember) => {
         Embed.setFooter(`Bot created by j0egee#0001`, "https://cdn.discordapp.com/attachments/845366607080456265/861746867008569384/Untitled_Artwork_3.png");
         Embed.setAuthor(`${newMember.user.tag}`, `${newMember.user.displayAvatarURL({ format: "png", dynamic: true })}`);
 
+        const fetchedLogs = await oldMember.guild.fetchAuditLogs({
+            limit: 1,
+            type: 'UPDATED_ROLE',
+        });
+
+        const rRoleLog = fetchedLogs.entries.first();
+
+        const { executor } = rRoleLog;
+
         oldMember.roles.cache.forEach(role => {
             if (!newMember.roles.cache.has(role.id)) {
                 Embed.addField("Role Removed", role);
+                Embed.addField("Added by", executor.tag);
             }
         });
 
@@ -82,9 +92,19 @@ client.on("guildMemberUpdate", (oldMember, newMember) => {
         Embed.setFooter(`Bot created by j0egee#0001`, "https://cdn.discordapp.com/attachments/845366607080456265/861746867008569384/Untitled_Artwork_3.png");
         Embed.setAuthor(`${newMember.user.tag}`, `${newMember.user.displayAvatarURL({ format: "png", dynamic: true })}`);
 
+        const fetchedLogs = await oldMember.guild.fetchAuditLogs({
+            limit: 1,
+            type: 'UPDATED_ROLE',
+        });
+
+        const aRoleLog = fetchedLogs.entries.first();
+
+        const { executor } = aRoleLog;
+
         newMember.roles.cache.forEach(role => {
             if (!oldMember.roles.cache.has(role.id)) {
                 Embed.addField("Role Added", role);
+                Embed.addField("Added by", executor.tag);
             }
         });
         client.channels.cache.get("863156995201040384").send(Embed);
