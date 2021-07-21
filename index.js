@@ -80,7 +80,7 @@ client.on("guildMemberUpdate", async (oldMember, newMember) => {
         oldMember.roles.cache.forEach(role => {
             if (!newMember.roles.cache.has(role.id)) {
                 Embed.addField("Role Removed", role);
-                Embed.addField("Added by", executor.tag);
+                Embed.addField("Removed by", executor.tag);
             }
         });
 
