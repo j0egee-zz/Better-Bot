@@ -10,7 +10,7 @@ module.exports = {
             .setTimestamp(Date.now())
             .setFooter(`Bot created by j0egee#0001`, "https://cdn.discordapp.com/attachments/845366607080456265/861746867008569384/Untitled_Artwork_3.png")
 
-        if (!args[0]) return message.channel.send('Please specify one of the wikis you would like to view. \`economy\`, \`tickets\`,\`suggestions\`,\`shop\`,\`colors\`,or \`application\`.');
+        if (!args[0]) return message.channel.send('Please specify one of the wikis you would like to view. \`economy\`, \`tickets\`,\`suggestions\`,\`shop\`,\`colors\`, \`partnership\`,or \`application\`.');
 
         const wikipages = [
             "economy",
@@ -70,6 +70,12 @@ module.exports = {
             .setTitle('Colors wiki')
             .setDescription('You can buy a color perk! With this you get the ability to change the color of you name in this server!')
             .addField('\`-color\`', 'Show you the basic color page! This has a list of all the colors and you can see how they look!')
+        )
+
+        if (args[0] === 'partnership') return message.channel.send(embed
+            .setTitle('Partnership wiki')
+            .setDescription('On this server you can buy partnership! What this means is you will get a rank for proof of purchase, you contact @j0egee#0001 directly to set up your ad. You have to have an ad for our server in your own, and your ad will get sent to the private channel!')
+            .addField('\`-buyPartnership\`', 'If you have enough coins, buy the partnership rank for your ad!')
         )
 
         if (args[0] === 'application') return message.channel.send(embed
