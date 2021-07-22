@@ -2,11 +2,11 @@ const profileModel = require("../../models/profileSchema");
 
 const cooldowns = new Map();
 
-const config = require('../../config.json');
-
 module.exports = async (Discord, client, message) => {
 
-    if (!message.content.startsWith(config.prefix) || message.author.bot) return;
+    const prefix = '-';
+    
+    if (!message.content.startsWith(prefix) || message.author.bot) return;
 
 
     let profileData;

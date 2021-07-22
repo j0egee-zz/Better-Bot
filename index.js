@@ -3,8 +3,6 @@ const client = new Discord.Client({ partials: ["MESSAGE", "CHANNEL", "REACTION"]
 require('dotenv').config();
 const mongoose = require('mongoose');
 
-const config = require('./config.json');
-
 const fs = require('fs');
 
 const memberCounter = require('./counters/member-counter');
@@ -210,4 +208,4 @@ client.on('guildBanAdd', async (guild, user) => {
 });
 
 
-client.login(config.token);
+client.login(`ODQ5MzcyNDIzMDY5MjM3Mjg4.YLaNtg.rZYc1vP954en_iwy3T1iaefeeQU`);
