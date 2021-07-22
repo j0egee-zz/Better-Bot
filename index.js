@@ -12,6 +12,7 @@ client.events = new Discord.Collection();
 
 client.on("ready", async () => {
     client.user.setActivity("you | -help | -wiki", { type: "WATCHING" })
+    client.channels.cache.get('863156995201040384').send('I am now online!')
 })
 
 client.on('guildMemberAdd', guildMember => {
