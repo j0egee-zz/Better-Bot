@@ -34,7 +34,7 @@ module.exports = {
                 return msg.reactions.cache.size
             }
             setTimeout(() =>{
-                   // if(reactions(msg) <= 3)return message.channel.send('I can not host a giveaway if there are less then 3 participants!')
+                   if(reactions(msg) <= 3)return message.channel.send('I can not host a giveaway if there are less then 3 participants!')
                     message.channel.send(`The winer of **"${prize}"** is <@${winner(msg)}>! Please contact <@${message.author.id}> for your prize!`)
             }, ms(time));
     }
