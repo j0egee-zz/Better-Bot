@@ -10,7 +10,7 @@ module.exports = {
 
         var target = message.mentions.members.first();
 
-        if (!target) return message.channel.send('You must mention a user in this guild. **Warning! Do not create an account for a user that already has one! Check \`-userinfo\` to confirm!**');
+        if (!target) return message.channel.send('You must mention a user in this guild.');
 
 
         let userData = await profileModel.findOne({ userID: target.id });
