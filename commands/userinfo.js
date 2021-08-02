@@ -2,7 +2,7 @@ const profileModel = require("../models/profileSchema");
 
 module.exports = {
     name: 'userinfo',
-    aliases: [],
+    aliases: [],  
     permissions: ["KICK_MEMBERS"],
     description: "Get the user info for a user in the guild!",
     async execute(client, message, cmd, args, Discord, profileData) {
