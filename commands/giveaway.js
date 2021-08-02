@@ -22,7 +22,7 @@ module.exports = {
             .setFooter(`Bot created by j0egee#0001`, "https://cdn.discordapp.com/attachments/845366607080456265/861746867008569384/Untitled_Artwork_3.png")
             .setAuthor(`Giveaway host: ${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))
             .setTitle('New giveaway!')
-            .setDescription(`**${prize}**\n\n*This giveaway is ${ms(ms(time))} long!*`);
+            .setDescription(`**${prize}**\n\n*This giveaway is ${ms(ms(time))} long!* It will end on <t:${((Date.now() + ms(time)) /1000).toFixed()}:f>!`);
 
             let msg = await message.channel.send(embed)
             await msg.react('🎉')

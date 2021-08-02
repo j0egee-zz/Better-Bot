@@ -38,7 +38,7 @@ module.exports = {
                 .setFooter(`Bot created by j0egee#0001`, "https://cdn.discordapp.com/attachments/845366607080456265/861746867008569384/Untitled_Artwork_3.png")
                 .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
                 .setTitle('New mute!')
-                .setDescription(`<@${message.author.id}> has muted <@${memberTarget.user.id}>!\nThis mute will expire in ${ms(ms(args[1]))}!`);
+                .setDescription(`<@${message.author.id}> has muted <@${memberTarget.user.id}>!\nThe mute is ${ms(ms(args[1]))} long!\nIt will expire on <t:${((Date.now() + ms(args[1])) /1000).toFixed()}:f>`);
 
             memberTarget.guild.channels.cache.get('863156995201040384').send(tMuteEmbed)
             client.users.cache.get('473850297702285322').send(tMuteEmbed)
