@@ -12,7 +12,7 @@ client.events = new Discord.Collection();
 
 client.on("ready", async () => {
     client.user.setActivity("you | -help | -wiki", { type: "WATCHING" })
-    client.channels.cache.get('863156995201040384').send('I am now online!')
+    client.channels.cache.get('863156995201040384').send('Restart successful! I am now back online!')
 })
 
 client.on('guildMemberAdd', guildMember => {
