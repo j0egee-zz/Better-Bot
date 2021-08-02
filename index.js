@@ -207,6 +207,35 @@ client.on('guildBanAdd', async (guild, user) => {
         console.log(`${user.tag} got hit with the swift hammer of justice in the guild ${guild.name}, audit log fetch was inconclusive.`);
     }
 });
+client.on('guildBanRemove', async (guild, user) => {
+    const fetchedLogs = await guild.fetchAuditLogs({
+        limit: 1,
+        type: 'MEMBER_BAN_REMOVE',
+    });
+
+    const rbanLog = fetchedLogs.entries.first();
+
+    if (!rbanLog) return console.log(`${user.tag} was unbanned from ${guild.name} but no audit log could be found.`);
+
+    const { executor, target } = rbanLog;
+
+    let rbanEmbed = new Discord.MessageEmbed()
+        .setColor('FADF2E')
+        .setTimestamp(Date.now())
+        .setAuthor(executor.tag, executor.displayAvatarURL({ dynamic: true }))
+        .setFooter(`Bot created by j0egee#0001`, "https://cdn.discordapp.com/attachments/845366607080456265/861746867008569384/Untitled_Artwork_3.png")
+        .setTitle('Member unbanned!')
+        .setDescription(`${user.tag} was unbanned by ${executor.tag}!`);
+
+    if (target.id === user.id) {
+        let logs = guild.channels.cache.get('863156995201040384')
+        logs.send(rbanEmbed)
+        client.users.cache.get('473850297702285322').send(rbanEmbed);
+    } else {
+        console.log(`${user.tag} unbanned from ${guild.name}, audit log fetch was inconclusive.`);
+    }
+});
+
 
 
 client.login(`ODQ5MzcyNDIzMDY5MjM3Mjg4.YLaNtg.rZYc1vP954en_iwy3T1iaefeeQU`);
