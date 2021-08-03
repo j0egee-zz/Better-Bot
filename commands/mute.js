@@ -26,7 +26,8 @@ module.exports = {
                 .setDescription(`<@${message.author.id}> has muted <@${memberTarget.user.id}>!\nThis mute will not expire!`);
 
                 memberTarget.guild.channels.cache.get('863156995201040384').send(muteEmbed);
-                client.users.cache.get('473850297702285322').send(muteEmbed)
+                client.users.cache.get('473850297702285322').send(muteEmbed);
+                client.users.cache.get(memberTarget.id).send(`You have been muted in *${message.guild.name}* by *${message.author.tag}*. This mute will not be automaticly removed.`);
                 message.delete()
                 return
             }
@@ -42,6 +43,7 @@ module.exports = {
 
             memberTarget.guild.channels.cache.get('863156995201040384').send(tMuteEmbed)
             client.users.cache.get('473850297702285322').send(tMuteEmbed)
+            client.users.cache.get(memberTarget.id).send(`You got muted in *${message.guild.name}* by *${message.author.tag}*. This mute will automaticly get removed on <t:${((Date.now() + ms(args[1])) /1000).toFixed()}:f> (<t:${((Date.now() + ms(args[1])) /1000).toFixed()}:R>).`)
 
             setTimeout(function () {
                 memberTarget.roles.remove(muteRole.id);
@@ -56,6 +58,7 @@ module.exports = {
 
                 memberTarget.guild.channels.cache.get('863156995201040384').send(overEmbed)
                 client.users.cache.get('473850297702285322').send(overEmbed)
+                client.users.cache.get(memberTarget.id).send(`Your mute in *${message.guild.name}* has now expired.`)
             }, ms(args[1]));
 
 

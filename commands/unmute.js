@@ -22,6 +22,7 @@ module.exports = {
 
             memberTarget.guild.channels.cache.get('863156995201040384').send(uMuteEmbed)
             client.users.cache.get('473850297702285322').send(uMuteEmbed)
+            client.users.cache.get(memberTarget.id).send(`You have been unmute in *${message.guild.name}* by *${message.author.tag}*.`)
         } else {
             message.channel.send('I cant seem to unmute that member. Please re-check your command and try again.');
         }
