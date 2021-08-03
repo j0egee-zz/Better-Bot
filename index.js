@@ -52,11 +52,31 @@ client.on("message", async (message, guild, Discord) => {
 })
 
 
-client.on('messageUpdate', async (oldMessage, newMessage, Discord) => {
-    require('./events/guild/messageUpdate')(oldMessage, newMessage)
+client.on('messageUpdate', async (oldMessage, newMessage) => {
+    const muembed = new Discord.MessageEmbed()
+        .setColor('FADF2E')
+        .setTimestamp(Date.now())
+        .setFooter(`Bot created by j0egee#0001`, "https://cdn.discordapp.com/attachments/845366607080456265/861746867008569384/Untitled_Artwork_3.png")
+        .setTitle('Message update')
+        .setDescription(`${oldMessage.author}'s message was updated in ${oldMessage.channel}`)
+        .addField('Jump to message', `[CLICK HERE](https://discord.com/channels/${oldMessage.guild.id}/${oldMessage.channel.id}/${oldMessage.id})`)
+        .addField(`Old message`, oldMessage.content)
+        .addField(`New message`, newMessage.content)
+
+    let logs = oldMessage.guild.channels.cache.get('863156995201040384')
+    logs.send(muembed)
 })
-client.on('messageDelete', async (message, Discord) => {
-    require('./events/guild/messageDelete')(message)
+client.on('messageDelete', async (message) => {
+    const mdembed = new Discord.MessageEmbed()
+        .setColor('FADF2E')
+        .setTimestamp(Date.now())
+        .setFooter(`Bot created by j0egee#0001`, "https://cdn.discordapp.com/attachments/845366607080456265/861746867008569384/Untitled_Artwork_3.png")
+        .setTitle('Message delete')
+        .setDescription(`${message.author}'s message was deleted in ${message.channel}`)
+        .addField(`Message content`, message.content)
+
+    let logs = message.guild.channels.cache.get('863156995201040384')
+    logs.send(mdembed)
 })
 
 client.on("guildMemberUpdate", async (oldMember, newMember) => {
