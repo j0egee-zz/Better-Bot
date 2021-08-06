@@ -10,7 +10,7 @@ module.exports = {
             .setTimestamp(Date.now())
             .setFooter(`Bot created by j0egee#0001`, "https://cdn.discordapp.com/attachments/845366607080456265/861746867008569384/Untitled_Artwork_3.png")
 
-        if (!args[0]) return message.channel.send('Please specify one of the wikis you would like to view. \`economy\`, \`tickets\`,\`suggestions\`,\`shop\`,\`colors\`, \`partnership\`,or \`application\`.');
+        if (!args[0]) return message.channel.send('Please specify one of the wikis you would like to view. \`economy\`, \`tickets\`,\`suggestions\`,\`shop\`,\`colors\`, \`partnership\`, \`application\`or \`mutes\`.');
 
         const wikipages = [
             "economy",
@@ -22,7 +22,8 @@ module.exports = {
             "colors",
             "application",
             "staffapplication",
-            "generalstaff"
+            "generalstaff",
+            "mutes"
         ]
 
         if (args[0] === 'economy') return message.channel.send(embed
@@ -102,6 +103,16 @@ module.exports = {
             .addField('\`-say\`', 'Send a normal (not embed) message to any channel!')
             .addField('\`-unmute\`', 'Remove any mute from a user in the server!')
             .addField('\`-userinfo\`', 'Get a user infomation page! (Only way to see a users balance!)')
+        )
+        if (args[0] === 'mutes') return message.channel.send(embed
+            .setTitle('Mutes wiki')
+            .setDescription('One of the punishments for breaking a rule in this server will be a mute. For your first mute the length will be listed, and for every mute after that it increates by how ever many muted you have. Example: First mute = 2 hours; Second mute = 4 hours; Third mute = 6 hours.')
+            .addField('Spam', '2 hours')
+            .addField('Wrong channel', 'One hour')
+            .addField('NSFW content', '5 hours')
+            .addField('Disrespectful', '2 hours')
+            .addField('Other language (Non English)', 'One hour')
+            .addField('Against Discord ToS', '3 hours')
         )
 
 
