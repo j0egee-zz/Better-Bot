@@ -15,9 +15,25 @@ client.on("ready", async () => {
     client.channels.cache.get('863156995201040384').send('Restart successful! I am now back online!')
 })
 
-client.on('guildMemberAdd', guildMember => {
+client.on('guildMemberAdd', async guildMember => {
 
     guildMember.guild.channels.cache.get('863163477854257162').send(`Welcome <@${guildMember.user.id}> to the **AD Center Discord Server**! Please read over <#863155069243228161> :)`)
+
+    const muteSchema = require("./models/mute-schema");
+
+    const currentMute = await muteSchema.findOne({
+        userID: guildMember.id,
+        guildID: guildMember.guild.id,
+        current: true
+    })
+
+    let muteRole = guildMember.guild.roles.cache.find(role => role.name === 'Muted');
+
+    if (currentMute) {
+        guildMember.roles.add(muteRole)
+        client.channels.cache.get('863156995201040384').send(`${currentMute.userTag} has just bypassed there mute. They are now re-muted! Originally muted by <@${currentMute.staffID}>`)
+    }
+    else { return }
 });
 
 ['command_handler', 'event_handler'].forEach(handler => {
@@ -88,7 +104,7 @@ client.on("guildMemberUpdate", async (oldMember, newMember) => {
         Embed.setTimestamp(Date.now());
         Embed.setTitle(`Member updated!`);
         Embed.setFooter(`Bot created by j0egee#0001`, "https://cdn.discordapp.com/attachments/845366607080456265/861746867008569384/Untitled_Artwork_3.png");
-        Embed.addField(`Member`,`<@${newMember.user.id}>`);
+        Embed.addField(`Member`, `<@${newMember.user.id}>`);
 
         const fetchedLogs = await oldMember.guild.fetchAuditLogs({
             limit: 1,
@@ -113,7 +129,7 @@ client.on("guildMemberUpdate", async (oldMember, newMember) => {
         Embed.setTitle(`Member updated!`);
         Embed.setTimestamp(Date.now());
         Embed.setFooter(`Bot created by j0egee#0001`, "https://cdn.discordapp.com/attachments/845366607080456265/861746867008569384/Untitled_Artwork_3.png");
-        Embed.addField(`Member`,`<@${newMember.user.id}>`);
+        Embed.addField(`Member`, `<@${newMember.user.id}>`);
 
         const fetchedLogs = await oldMember.guild.fetchAuditLogs({
             limit: 1,
