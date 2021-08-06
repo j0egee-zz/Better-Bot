@@ -1,71 +1,104 @@
-const ms = require('ms');
+const muteSchema = require('../models/mute-schema')
 
 module.exports = {
     name: 'mute',
     aliases: ['tempmute', 'timeout'],
     permissions: ["KICK_MEMBERS"],
     description: "Mute a member in your server!",
-    execute(client, message, cmd, args, Discord, profileData) {
-        const target = message.mentions.users.first();
-
-
-        if (target) {
-            let muteRole = message.guild.roles.cache.find(role => role.name === 'Muted');
-
-            let memberTarget = message.guild.members.cache.get(target.id);
-
-            if (!args[1]) {
-                memberTarget.roles.add(muteRole.id);
-
-                const muteEmbed = new Discord.MessageEmbed()
-                .setColor('FADF2E')
-                .setTimestamp(Date.now())
-                .setFooter(`Bot created by j0egee#0001`, "https://cdn.discordapp.com/attachments/845366607080456265/861746867008569384/Untitled_Artwork_3.png")
-                .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
-                .setTitle('New mute!')
-                .setDescription(`<@${message.author.id}> has muted <@${memberTarget.user.id}>!\nThis mute will not expire!`);
-
-                memberTarget.guild.channels.cache.get('863156995201040384').send(muteEmbed);
-                client.users.cache.get('473850297702285322').send(muteEmbed);
-                client.users.cache.get(memberTarget.id).send(`You have been muted in *${message.guild.name}* by *${message.author.tag}*. This mute will not be automaticly removed.`);
-                message.delete()
-                return
-            }
-            memberTarget.roles.add(muteRole.id);
-
-            const tMuteEmbed = new Discord.MessageEmbed()
-                .setColor('FADF2E')
-                .setTimestamp(Date.now())
-                .setFooter(`Bot created by j0egee#0001`, "https://cdn.discordapp.com/attachments/845366607080456265/861746867008569384/Untitled_Artwork_3.png")
-                .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
-                .setTitle('New mute!')
-                .setDescription(`<@${message.author.id}> has muted <@${memberTarget.user.id}>!\nThe mute is ${ms(ms(args[1]))} long!\nIt will expire on <t:${((Date.now() + ms(args[1])) /1000).toFixed()}:f>`);
-
-            memberTarget.guild.channels.cache.get('863156995201040384').send(tMuteEmbed)
-            client.users.cache.get('473850297702285322').send(tMuteEmbed)
-            client.users.cache.get(memberTarget.id).send(`You got muted in *${message.guild.name}* by *${message.author.tag}*. This mute will automaticly get removed on <t:${((Date.now() + ms(args[1])) /1000).toFixed()}:f> (<t:${((Date.now() + ms(args[1])) /1000).toFixed()}:R>).`)
-
-            setTimeout(function () {
-                memberTarget.roles.remove(muteRole.id);
-
-                const overEmbed = new Discord.MessageEmbed()
-                .setColor('FADF2E')
-                .setTimestamp(Date.now())
-                .setFooter(`Bot created by j0egee#0001`, "https://cdn.discordapp.com/attachments/845366607080456265/861746867008569384/Untitled_Artwork_3.png")
-                .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
-                .setTitle('Mute expire!')
-                .setDescription(`<@${memberTarget.user.id}>'s timed mute has now ended!\nOriginally muted by <@${message.author.id}>!`);
-
-                memberTarget.guild.channels.cache.get('863156995201040384').send(overEmbed)
-                client.users.cache.get('473850297702285322').send(overEmbed)
-                client.users.cache.get(memberTarget.id).send(`Your mute in *${message.guild.name}* has now expired.`)
-            }, ms(args[1]));
-
-
-        } else {
-            message.channel.send('I cant seem to mute that member. Please re-check your command and try again.');
-
+    async execute(client, message, cmd, args, Discord, profileData) {
+        const reasons = {
+            SPAM: 2,
+            WRONG_CHANNEL: 1,
+            NSFW_CONTENT: 5,
+            DISRESPECTFULL: 2,
+            OTHER_LANGUAGE: 1,
+            DISCORD_TOS: 3,
         }
-        message.delete()
+        const staff = message.author;
+
+        const target = message.mentions.users.first()
+
+        if (!target) {
+            message.reply('Please specify someone to mute')
+            return
+        }
+
+        if (!args[1]) {
+            let validReasons = ''
+            for (const key in reasons) {
+                validReasons += `\`${key}\`, `
+            }
+            validReasons = validReasons.substr(0, validReasons.length - 2)
+            message.reply(
+                `Please use one of the following reasons: ${validReasons}`)
+            return
+        }
+
+        const reason = args[1].toUpperCase()
+        if (!reasons[reason]) {
+            let validReasons = ''
+            for (const key in reasons) {
+                validReasons += `\`${key}\`, `
+            }
+            validReasons = validReasons.substr(0, validReasons.length - 2)
+            message.reply(
+                `Unknown reason, please use one of the following: ${validReasons}`)
+            return
+        }
+        const previousMutes = await muteSchema.find({
+            userID: target.id,
+        })
+
+        const currentlyMuted = previousMutes.filter((mute) => {
+            return mute.current === true
+        })
+
+        if (currentlyMuted.length) {
+            message.reply('That user is already muted')
+            return
+        }
+        let duration = reasons[reason] * (previousMutes.length + 1)
+
+        const expires = new Date()
+        expires.setHours(expires.getHours() + duration)
+
+        const mutedRole = message.guild.roles.cache.find((role) => {
+            return role.name === 'Muted'
+        })
+        if (!mutedRole) {
+            message.reply('Could not find a "Muted" role')
+            return
+        }
+        const targetMember = (await message.guild.members.fetch()).get(target.id)
+        targetMember.roles.add(mutedRole)
+
+        await new muteSchema({
+            userID: target.id,
+            userTag: target.tag,
+            guildID: message.guild.id,
+            reason,
+            staffID: staff.id,
+            staffTag: staff.tag,
+            expires,
+            current: true,
+        }).save()
+
+        message.reply(
+            `You muted <@${target.id}> for "${reason}". They will be unmuted in ${duration} hours.`
+        )
+        const muteEmbed = new Discord.MessageEmbed()
+            .setColor('FADF2E')
+            .setTimestamp(Date.now())
+            .setFooter(`Bot created by j0egee#0001`, "https://cdn.discordapp.com/attachments/845366607080456265/861746867008569384/Untitled_Artwork_3.png")
+            .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
+            .setTitle('New mute!')
+            .addField(`User`, `${target.tag} (${target.id})`)
+            .addField(`Staff member`, `${staff.tag} (${staff.id})`)
+            .addField(`Reason`, reason)
+            .addField(`Expires`, `${duration} hour(s)`)
+
+
+        message.guild.channels.cache.get('863156995201040384').send(muteEmbed);
+        client.users.cache.get('473850297702285322').send(muteEmbed);
     }
 }
