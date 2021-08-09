@@ -33,6 +33,7 @@ module.exports = {
         .addField('\`-beg\`', 'Beg for a random number of coins to get added to your balance!')
         .addField('\`-pay\`', 'Pay another member of the server a certian amount of coins!')
         .addField('\`-shop\`', 'Show all the ways to spend your coins!')
+        .addField('\`-guessthenumber\`', 'Play a game to win coins!')
         )
 
         if (args[0] === 'staffeconomy') return message.channel.send(embed
