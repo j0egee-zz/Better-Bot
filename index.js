@@ -106,6 +106,7 @@ client.on("guildMemberUpdate", async (oldMember, newMember) => {
         Embed.setColor('FADF2E');
         Embed.setTimestamp(Date.now());
         Embed.setTitle(`Member updated!`);
+        Embed.setAuthor(newMember.user.tag, oldMember.user.displayAvatarURL({ format: "png", dynamic: true }));
         Embed.setFooter(`Bot created by j0egee#0001`, "https://cdn.discordapp.com/attachments/845366607080456265/861746867008569384/Untitled_Artwork_3.png");
         Embed.addField(`Member`, `<@${newMember.user.id}>`);
 
@@ -130,6 +131,7 @@ client.on("guildMemberUpdate", async (oldMember, newMember) => {
         const Embed = new Discord.MessageEmbed();
         Embed.setColor('FADF2E');
         Embed.setTitle(`Member updated!`);
+        Embed.setAuthor(newMember.user.tag, oldMember.user.displayAvatarURL({ format: "png", dynamic: true }));
         Embed.setTimestamp(Date.now());
         Embed.setFooter(`Bot created by j0egee#0001`, "https://cdn.discordapp.com/attachments/845366607080456265/861746867008569384/Untitled_Artwork_3.png");
         Embed.addField(`Member`, `<@${newMember.user.id}>`);
