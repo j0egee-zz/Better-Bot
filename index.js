@@ -5,14 +5,17 @@ const mongoose = require('mongoose');
 
 const fs = require('fs');
 
-const memberCounter = require('./counters/member-counter');
+const memberCounter = require ('./counters/member-counter');
+const muteRemover = require ('./counters/mute-remover');
 
 client.commands = new Discord.Collection();
 client.events = new Discord.Collection();
 
 client.on("ready", async () => {
-    client.user.setActivity("you | -help | -wiki", { type: "WATCHING" })
-    client.channels.cache.get('863156995201040384').send('Restart successful! I am now back online!')
+    client.user.setActivity("you | -help | -wiki", { type: "WATCHING" });
+    client.channels.cache.get('863156995201040384').send('Restart successful! I am now back online!');
+    memberCounter(client)
+    muteRemover(client)
 })
 
 client.on('guildMemberAdd', async guildMember => {
