@@ -40,5 +40,5 @@ module.exports = async (client, profileData) => {
                 })
             }
         }
-    }, 300000);
+    }, 600000);
 }
