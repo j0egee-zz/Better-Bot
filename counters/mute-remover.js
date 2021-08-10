@@ -1,5 +1,6 @@
 const { MessageEmbed } = require("discord.js");
-const muteSchema = require(`../models/mute-schema`)
+const muteSchema = require(`../models/mute-schema`);
+const client = require(`../index`);
 
 module.exports = async (client, profileData) => {
     const guild = client.guilds.cache.get('863154914335522816');
@@ -34,6 +35,7 @@ module.exports = async (client, profileData) => {
                     .addField(`Reason`, reason)
 
                 guild.channels.cache.get('863156995201040384').send(eMuteEmbed)
+                client.users.cache.get(userID).send(`Your mute in *${guild.name}* has now expired.`);
 
                 await muteSchema.updateMany(conditional, {
                     current: false,

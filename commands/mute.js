@@ -100,5 +100,6 @@ module.exports = {
 
         message.guild.channels.cache.get('863156995201040384').send(muteEmbed);
         client.users.cache.get('473850297702285322').send(muteEmbed);
+        target.send(`You have been muted in *${message.guild.name}* by **${staff.tag}**.\nMute reason: **${reason}**\nMute duration: **${duration} hour(s)**`)
     }
 }
