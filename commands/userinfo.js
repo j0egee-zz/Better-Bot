@@ -24,7 +24,7 @@ module.exports = {
                 .addField(`Username`, `${pfpMember.user.tag}`, true)
                 .addField(`NickName`, `${pfpMember.nickname}`, true)
                 .addField(`UserID`, `${pfpMember.user.id}`, true)
-                .addField(`Coins`,  userData.coins)
+                .addField(`Coins`,  userData.coins.toLocaleString())
                 .addField(`Joined on`, `<t:${(pfpMember.joinedAt.valueOf() /1000).toFixed()}:f> (<t:${(pfpMember.joinedAt.valueOf() /1000).toFixed()}:R>)`)
                 .addField(`Created on`, `<t:${(pfpMember.user.createdAt.valueOf() /1000).toFixed()}:f> (<t:${(pfpMember.user.createdAt.valueOf() /1000).toFixed()}:R>)`)
                 .addField(`Roles`, `${pfpMemberRoles}`);
