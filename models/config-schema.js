@@ -7,7 +7,7 @@ const configSchema = mongoose.Schema({
     ticketLogs: { type: String, required: true, default: "863157013567373332" },
     ticketCategory: { type: String, required: true, default: "863160325868093440" },
     welcomeChannel: { type: String, required: true, default: "863163477854257162" },
-    guildID: { type: String, required: true, unique: true, default: "863154914335522816" },
+    guildID: { type: String, required: true, unique: true, default: "863154914335522816" }
 
 })
 
