@@ -85,6 +85,9 @@ client.on('messageUpdate', async (oldMessage, newMessage) => {
     logs.send(muembed)
 })
 client.on('messageDelete', async (message) => {
+
+    if(!message.content) return;
+    
     const mdembed = new Discord.MessageEmbed()
         .setColor('FADF2E')
         .setTimestamp(Date.now())
