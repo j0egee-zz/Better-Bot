@@ -30,8 +30,10 @@ module.exports = {
             if (reaction.message.partial) await reaction.message.fetch();
             if (reaction.partial) await reaction.fetch();
             if (user.bot) return;
+            if (user !== message.author) return;
             if (!reaction.message.guild) return;
-
+            if(reaction.message.id !== messageEmbed.id) return;
+           
             if (reaction.message.guild.id == message.guild.id) {
 
                 if (reaction.emoji.name === adminEmoji) {
