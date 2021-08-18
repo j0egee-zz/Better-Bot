@@ -4,8 +4,8 @@ const cooldowns = new Map();
 
 module.exports = async (Discord, client, message) => {
 
-    const prefix = '-';
-    
+    const prefix = "-";
+
     if (!message.content.startsWith(prefix) || message.author.bot) return;
 
 
@@ -29,7 +29,7 @@ module.exports = async (Discord, client, message) => {
 
     const command = client.commands.get(cmd) || client.commands.find(a => a.aliases && a.aliases.includes(cmd));
 
-    if (!command) return message.channel.send('This is not a valid command. Check \`-help\` for a list of all the commands.');
+    if (!command) return message.channel.send(`This is not a valid command. Check \`${prefix}help\` for a list of all the commands.`);
 
     if (!cooldowns.has(command.name)) {
         cooldowns.set(command.name, new Discord.Collection());
