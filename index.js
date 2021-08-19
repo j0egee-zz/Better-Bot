@@ -71,6 +71,10 @@ client.on("message", async (message, guild, Discord) => {
 
 
 client.on('messageUpdate', async (oldMessage, newMessage) => {
+
+    if(!oldMessage.content) return; 
+    if(!newMessage.content) return;
+
     const muembed = new Discord.MessageEmbed()
         .setColor('FADF2E')
         .setTimestamp(Date.now())
