@@ -2,7 +2,7 @@ const profileModel = require("../models/profileSchema");
 
 module.exports = {
     name: 'userinfo',
-    aliases: [],  
+    aliases: [],
     permissions: ["KICK_MEMBERS"],
     description: "Get the user info for a user in the guild!",
     async execute(client, message, cmd, args, Discord, profileData) {
@@ -16,6 +16,11 @@ module.exports = {
             const pfpMemberRoles = pfpMember.roles.cache
                 .map((role) => role.toString());
 
+
+            const joinUnix = (pfpMember.joinedAt.valueOf() / 1000).toFixed();
+            const createUnix = (pfpMember.user.createdAt.valueOf() / 1000).toFixed();
+             const messageUnix = (pfpMember.lastMessage.createdAt.valueOf() / 1000).toFixed();
+
             const embed = new Discord.MessageEmbed()
                 .setColor('FADF2E')
                 .setTimestamp(Date.now())
@@ -24,11 +29,13 @@ module.exports = {
                 .addField(`Username`, `${pfpMember.user.tag}`, true)
                 .addField(`NickName`, `${pfpMember.nickname}`, true)
                 .addField(`UserID`, `${pfpMember.user.id}`, true)
-                .addField(`Coins`,  userData.coins.toLocaleString())
-                .addField(`Joined on`, `<t:${(pfpMember.joinedAt.valueOf() /1000).toFixed()}:f> (<t:${(pfpMember.joinedAt.valueOf() /1000).toFixed()}:R>)`)
-                .addField(`Created on`, `<t:${(pfpMember.user.createdAt.valueOf() /1000).toFixed()}:f> (<t:${(pfpMember.user.createdAt.valueOf() /1000).toFixed()}:R>)`)
-                .addField(`Roles`, `${pfpMemberRoles}`);
-                
+                .addField(`Coins`, userData.coins.toLocaleString())
+                .addField(`Joined on`, `<t:${joinUnix}:f> (<t:${joinUnix}:R>)`)
+                .addField(`Created on`, `<t:${createUnix}:f> (<t:${createUnix}:R>)`)
+                .addField(`Roles`, `${pfpMemberRoles}`)
+                .addField(`Last message date`, `<t:${messageUnix}:f> (<t:${messageUnix}:R>)`)
+                .addField(`Last message content`, `\`\`\`${pfpMember.lastMessage}\`\`\``)
+
 
             message.channel.send(embed);
             message.channel.send(`Here is ${pfpMember}'s user info.`);
