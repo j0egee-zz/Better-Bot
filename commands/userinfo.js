@@ -13,17 +13,17 @@ module.exports = {
 
             if (!userData) return message.channel.send('An error has occured. This user is most likely not in my system yet. Please use the \`-createdata\` command!');
 
-            const pfpMemberRoles = pfpMember.roles.cache
+            let pfpMemberRoles = pfpMember.roles.cache
                 .map((role) => role.toString());
-
 
             const joinUnix = (pfpMember.joinedAt.valueOf() / 1000).toFixed();
             const createUnix = (pfpMember.user.createdAt.valueOf() / 1000).toFixed();
+            const messageUnix = (pfpMember.lastMessage.createdAt.valueOf() / 1000).toFixed();
 
             const embed = new Discord.MessageEmbed()
                 .setColor('FADF2E')
                 .setTimestamp(Date.now())
-                .setThumbnail(pfpMember.user.displayAvatarURL({ dynamic: true }))
+                .setImage(pfpMember.user.displayAvatarURL({ dynamic: true }))
                 .setFooter(`Bot created by j0egee#0001`, "https://cdn.discordapp.com/attachments/845366607080456265/861746867008569384/Untitled_Artwork_3.png")
                 .addField(`Username`, `${pfpMember.user.tag}`, true)
                 .addField(`NickName`, `${pfpMember.nickname}`, true)
@@ -32,7 +32,7 @@ module.exports = {
                 .addField(`Joined on`, `<t:${joinUnix}:f> (<t:${joinUnix}:R>)`)
                 .addField(`Created on`, `<t:${createUnix}:f> (<t:${createUnix}:R>)`)
                 .addField(`Roles`, `${pfpMemberRoles}`)
-                .addField(`Last message`, `\`\`\`${pfpMember.lastMessage}\`\`\``);
+                .addField(`Last message`, `\`\`\`${pfpMember.lastMessage}\`\`\`\n<t:${messageUnix}:f> (<t:${messageUnix}:R>)`);
 
 
             message.channel.send(embed);
