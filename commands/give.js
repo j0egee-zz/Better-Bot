@@ -27,7 +27,7 @@ module.exports = {
             }
             );
 
-            return message.channel.send(`${target} has recived **${amount} coins**. They now have *${targetData.coins} coins*.`)
+            return message.channel.send(`${target} has recived **${amount.toLocaleString()} coins**. They used to have *${targetData.coins.toLocaleString()} coins*.`)
         } catch (err) {
             console.log(err)
         }

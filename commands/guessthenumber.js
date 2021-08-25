@@ -51,7 +51,7 @@ module.exports = {
                         .setTitle(`Correct`)
                         .setDescription(`${parseInt(msg)} is correct!\n`
                         + `It took you ${tries} times to get it\n`
-                        + `I added ${amount} to your balance.`)
+                        + `I added ${amount.toLocaleString()} to your balance.`)
                         .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
                         .setColor('FADF2E')
                         .setTimestamp(Date.now())

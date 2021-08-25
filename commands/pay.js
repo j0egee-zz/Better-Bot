@@ -26,7 +26,7 @@ module.exports = {
             .setFooter(`Bot created by j0egee#0001`, "https://cdn.discordapp.com/attachments/845366607080456265/861746867008569384/Untitled_Artwork_3.png")
             .setTitle(`Confirm payment`)
             .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
-            .setDescription(`Please react with the ✅ to confirm your payment of **${amount} coins** to ${target}.\n\n*Once you confirm there is no going back.*`);
+            .setDescription(`Please react with the ✅ to confirm your payment of **${amount.toLocaleString()} coins** to ${target}.\n\n*Once you confirm there is no going back.*`);
 
         if (userData.coins < amount) return message.channel.send('You do not have enough money to pay that user with.');
 
@@ -50,7 +50,7 @@ module.exports = {
                         .setFooter(`Bot created by j0egee#0001`, "https://cdn.discordapp.com/attachments/845366607080456265/861746867008569384/Untitled_Artwork_3.png")
                         .setTitle(`Payment successful`)
                         .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
-                        .setDescription(`${target} has been payed **${amount} coins**.`)
+                        .setDescription(`${target} has been payed **${amount.toLocaleString()} coins**.`)
 
                     message.channel.send(payEmbed);
 

@@ -15,6 +15,6 @@ module.exports = {
             }
         }
         );
-        return message.reply(`You begged and recived **${randomNumber} coins**!`);
+        return message.reply(`You begged and recived **${randomNumber.toLocaleString()} coins**!`);
     },
 };
