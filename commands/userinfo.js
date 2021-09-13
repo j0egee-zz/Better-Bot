@@ -18,7 +18,6 @@ module.exports = {
 
             const joinUnix = (pfpMember.joinedAt.valueOf() / 1000).toFixed();
             const createUnix = (pfpMember.user.createdAt.valueOf() / 1000).toFixed();
-            const messageUnix = (pfpMember.lastMessage.createdAt.valueOf() / 1000).toFixed();
 
             const embed = new Discord.MessageEmbed()
                 .setColor('FADF2E')
@@ -32,11 +31,10 @@ module.exports = {
                 .addField(`Joined on`, `<t:${joinUnix}:f> (<t:${joinUnix}:R>)`)
                 .addField(`Created on`, `<t:${createUnix}:f> (<t:${createUnix}:R>)`)
                 .addField(`Roles`, `${pfpMemberRoles}`)
-                .addField(`Last message`, `\`\`\`${pfpMember.lastMessage}\`\`\`\n<t:${messageUnix}:f> (<t:${messageUnix}:R>)`);
-
 
             message.channel.send(embed);
-            message.channel.send(`Here is ${pfpMember}'s user info.`);
+            message.channel.send(`Here is ${pfpMember}'s user info.`)
+        
         }
     }
 }
