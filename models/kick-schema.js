@@ -7,7 +7,6 @@ const reqString = {
 
 const kickSchema = mongoose.Schema({
     userID: reqString,
-    userTag: reqString,
     reason: reqString,
     staffID: reqString,
     staffTag: reqString,
