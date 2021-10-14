@@ -148,34 +148,5 @@ module.exports = {
             message.channel.send(banEmbed)
         }
 
-
-        if (kickData) {
-            const kickEmbed = new Discord.MessageEmbed()
-                .setColor('FADF2E')
-                .setTimestamp(Date.now())
-                .setAuthor(target.tag)
-                .setTitle(`Kick history`)
-                .setFooter(`Bot created by j0egee#0001`, "https://cdn.discordapp.com/attachments/845366607080456265/861746867008569384/Untitled_Artwork_3.png")
-                .addField(`Reason:`, kickData.reason)
-                .addField(`Staff member:`, kickData.staffTag)
-                .addField(`Given:`, `<t:${((kickData.date) / 1000).toFixed()}>`)
-
-            message.channel.send(kickEmbed)
-        }
-
-        if (banData) {
-            const banEmbed = new Discord.MessageEmbed()
-                .setColor('FADF2E')
-                .setTimestamp(Date.now())
-                .setAuthor(target.tag)
-                .setTitle(`Ban history`)
-                .setFooter(`Bot created by j0egee#0001`, "https://cdn.discordapp.com/attachments/845366607080456265/861746867008569384/Untitled_Artwork_3.png")
-                .addField(`Reason:`, banData.reason)
-                .addField(`Staff member:`, banData.staffTag)
-                .addField(`Current:`, banData.current)
-                .addField(`Given:`, `<t:${((banData.date) / 1000).toFixed()}>`)
-
-            message.channel.send(banEmbed)
-        }
     }
 }
