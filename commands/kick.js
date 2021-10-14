@@ -7,7 +7,7 @@ module.exports = {
     description: "Kick a member in your server!",
     async execute(client, message, cmd, args, Discord, profileData) {
 
-        const target = message.mentions.users.first() || message.guild.members.cache.get(args[0]);
+        const target = message.mentions.users.first();
         const staff = message.author;
 
         if (!target) return message.reply('Please say what user you want to kick.');
@@ -20,6 +20,7 @@ module.exports = {
 
         await new kickSchema({
             userID: target.id,
+            userTag: target.tag,
             guildID: message.guild.id,
             reason: reason,
             staffID: staff.id,
@@ -30,7 +31,7 @@ module.exports = {
             .setColor('FADF2E')
             .setTimestamp(Date.now())
             .setTitle('You have been kicked!')
-            .setAuthor(target.tag, target.displayAvatarURL({ dynamic: true }))
+            .setAuthor(target.tag, target.user.displayAvatarURL({ dynamic: true }))
             .setFooter(`Bot created by j0egee#0001`, "https://cdn.discordapp.com/attachments/845366607080456265/861746867008569384/Untitled_Artwork_3.png")
             .setDescription(`You have been kicked by <@${message.author.id}> in *${message.guild.name}* for the reason "**${reason}**"`);
 

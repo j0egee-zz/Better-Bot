@@ -7,11 +7,14 @@ const reqString = {
 
 const banSchema = mongoose.Schema({
     userID: reqString,
+    userTag: reqString,
     reason: reqString,
     staffID: reqString,
     staffTag: reqString,
     guildID: reqString,
-    current: reqString
+    current: reqString,
+    date: { type: Date, default: Date.now }
+    
 })
 
 module.exports = mongoose.model(`bans`, banSchema);

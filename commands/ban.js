@@ -7,7 +7,7 @@ module.exports = {
     description: "Ban a member in your server!",
     async execute(client, message, cmd, args, Discord, profileData) {
 
-        const target = message.mentions.users.first() || message.guild.members.cache.get(args[0]);
+        const target = message.mentions.users.first();
         const staff = message.author;
 
         if (!target) return message.reply('Please say what user you want to ban.');
@@ -20,6 +20,7 @@ module.exports = {
 
         await new banSchema({
             userID: target.id,
+            userTag: target.tag,
             guildID: message.guild.id,
             reason: reason,
             staffID: staff.id,

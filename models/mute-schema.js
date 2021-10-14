@@ -12,6 +12,7 @@ const muteSchema = mongoose.Schema({
     staffID: reqString,
     staffTag: reqString,
     guildID: reqString,
+    date: { type: Date, default: Date.now },
     expires: {
         type: Date,
         required: true
@@ -20,8 +21,6 @@ const muteSchema = mongoose.Schema({
         type: Boolean,
         required: true
     }
-}, {
-    timestamps: true
 })
 
 module.exports = mongoose.model(`mutes`, muteSchema);
