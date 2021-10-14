@@ -20,6 +20,7 @@ module.exports = {
           })
 
           message.guild.members.unban(target);
+          message.channel.send('This user is now unbanned.')
 
     }
 }
