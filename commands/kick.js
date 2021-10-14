@@ -31,7 +31,7 @@ module.exports = {
             .setColor('FADF2E')
             .setTimestamp(Date.now())
             .setTitle('You have been kicked!')
-            .setAuthor(target.tag, target.user.displayAvatarURL({ dynamic: true }))
+            .setAuthor(target.tag)
             .setFooter(`Bot created by j0egee#0001`, "https://cdn.discordapp.com/attachments/845366607080456265/861746867008569384/Untitled_Artwork_3.png")
             .setDescription(`You have been kicked by <@${message.author.id}> in *${message.guild.name}* for the reason "**${reason}**"`);
 
