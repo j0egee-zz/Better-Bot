@@ -19,7 +19,7 @@ module.exports = {
             if(!banData) return message.channel.send('This user has no ban data.');
 
             if(banData) {
-                await banLogs.deleteOne({ userID: target.id, guildID: message.guild.id })
+                await banLogs.findOneAndDelete({ userID: target.id, guildID: message.guild.id }).sort({_id:-1})
                 message.reply(`<@${target.id}> most recent ban history has been cleared.`)
             };
         }
@@ -28,7 +28,7 @@ module.exports = {
             if(!kickData) return message.channel.send('This user has no kick data.');
 
             if(kickData) {
-                await kickLogs.deleteOne({ userID: target.id, guildID: message.guild.id })
+                await kickLogs.findOneAndDelete({ userID: target.id, guildID: message.guild.id }).sort({_id:-1})
                 message.reply(`<@${target.id}> most recent kick history has been cleared.`)
             };
         }
@@ -37,7 +37,12 @@ module.exports = {
             if(!muteData) return message.channel.send('This user has no mute data.');
 
             if(muteData) {
-                await muteLogs.deleteOne({ userID: target.id, guildID: message.guild.id })
+                await muteLogs.findOneAndDelete({ userID: target.id, guildID: message.guild.id }).sort({_id:-1})
+                if(muteData.current === 'true') {
+                    const muteRole = message.guild.roles.cache.find(role => role.name === 'Muted');
+                    const memberTarget = message.guild.members.cache.get(target.id);
+                    memberTarget.roles.remove(muteRole);
+                }
                 message.reply(`<@${target.id}> must recent mute history has been cleared.`)
             };
         }
@@ -47,12 +52,12 @@ module.exports = {
             if(!kickData) return message.channel.send('This user has no kick data.');
             if(!banData) return message.channel.send('This user has no ban data.');
 
-            if(kickData && banData && muteData) {
-                await muteLogs.deleteOne({ userID: target.id, guildID: message.guild.id })
-                await kickLogs.deleteOne({ userID: target.id, guildID: message.guild.id })
-                await banLogs.deleteOne({ userID: target.id, guildID: message.guild.id })
+            if(muteData && banData && kickData) {
+                await muteLogs.deleteMany({ userID: target.id, guildID: message.guild.id })
+                await kickLogs.deleteMany({ userID: target.id, guildID: message.guild.id })
+                await banLogs.deleteMany({ userID: target.id, guildID: message.guild.id })
 
-                message.reply(`<@${target.id}> most recent history has been cleared.`)
+                message.reply(`<@${target.id}> whole history has been cleared.`)
             }
 
         }

@@ -11,9 +11,9 @@ module.exports = {
 
         const target = args[0]
 
-        const muteData = await muteLogs.findOne({ userID: target, guildID: message.guild.id })
-        const kickData = await kickLogs.findOne({ userID: target, guildID: message.guild.id })
-        const banData = await banLogs.findOne({ userID: target, guildID: message.guild.id })
+        const muteData = await muteLogs.findOne({ userID: target, guildID: message.guild.id }).sort({_id:-1})
+        const kickData = await kickLogs.findOne({ userID: target, guildID: message.guild.id }).sort({_id:-1})
+        const banData = await banLogs.findOne({ userID: target, guildID: message.guild.id }).sort({_id:-1})
 
         if (!muteData && !kickData && !banData) return message.channel.send('This user has no punishments.')
         if (muteData && !kickData && !banData) {
