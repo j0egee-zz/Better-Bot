@@ -13,9 +13,9 @@ module.exports = {
 
         if (!target) return message.reply(`Be sure to mention the user. If you want to search by the users ID use \`-historyid\``);
 
-        const muteData = await muteLogs.findOne({ userID: target.id, guildID: message.guild.id })
-        const kickData = await kickLogs.findOne({ userID: target.id, guildID: message.guild.id })
-        const banData = await banLogs.findOne({ userID: target.id, guildID: message.guild.id })
+        const muteData = await muteLogs.findOne({ userID: target.id, guildID: message.guild.id }).sort({_id:-1})
+        const kickData = await kickLogs.findOne({ userID: target.id, guildID: message.guild.id }).sort({_id:-1})
+        const banData = await banLogs.findOne({ userID: target.id, guildID: message.guild.id }).sort({_id:-1})
 
         if (!muteData && !kickData && !banData) return message.channel.send('This user has no punishments.')
         if (muteData && !kickData && !banData) {
