@@ -20,7 +20,7 @@ module.exports = {
 
             if(banData) {
                 await banLogs.deleteOne({ userID: target.id, guildID: message.guild.id })
-                message.reply(`<@${target.id}> ban history has been cleared.`)
+                message.reply(`<@${target.id}> most recent ban history has been cleared.`)
             };
         }
 
@@ -29,7 +29,7 @@ module.exports = {
 
             if(kickData) {
                 await kickLogs.deleteOne({ userID: target.id, guildID: message.guild.id })
-                message.reply(`<@${target.id}> kick history has been cleared.`)
+                message.reply(`<@${target.id}> most recent kick history has been cleared.`)
             };
         }
 
@@ -38,7 +38,7 @@ module.exports = {
 
             if(muteData) {
                 await muteLogs.deleteOne({ userID: target.id, guildID: message.guild.id })
-                message.reply(`<@${target.id}> mute history has been cleared.`)
+                message.reply(`<@${target.id}> must recent mute history has been cleared.`)
             };
         }
 
@@ -52,7 +52,7 @@ module.exports = {
                 await kickLogs.deleteOne({ userID: target.id, guildID: message.guild.id })
                 await banLogs.deleteOne({ userID: target.id, guildID: message.guild.id })
 
-                message.reply(`<@${target.id}> entire history has been cleared.`)
+                message.reply(`<@${target.id}> most recent history has been cleared.`)
             }
 
         }
