@@ -6,6 +6,9 @@ module.exports = {
     cooldown: 0.1,
     description: "Buy a partnership ad.",
     async execute(client, message, cmd, args, Discord, profileData) {
+        
+        if(message.member.roles.cache.has('898604884528603136')) return message.reply('You are blocked from this servers economy.');
+
         let userData = await profileModel.findOne({ userID: message.author.id, serverID: message.guild.id })
         const user = message.author
         const partnerRole = message.guild.roles.cache.find(role => role.name === "Partner");

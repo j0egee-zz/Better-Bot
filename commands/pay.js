@@ -7,11 +7,16 @@ module.exports = {
     cooldown: 0.2,
     description: "Pay a member in the server some coins!",
     async execute(client, message, cmd, args, Discord, profileData) {
+
         if (!args.length) return message.channel.send('You need to mention a user in this guild.');
         const amount = parseInt(args[1])
         const target = message.mentions.users.first();
+        const targetM = message.mentions.members.first();
         const user = message.author;
         if (!target) return message.channel.sent('The user you mentioned is not in this guild.');
+
+        if(message.member.roles.cache.has('898604884528603136')) return message.reply('You are blocked from this servers economy.');
+        if(targetM.roles.cache.has('898604884528603136')) return message.reply('You can not pay people blocked by the server economy.');
 
         if (target.id === user.id) return message.channel.send(`You can not pay yourself!`);
 

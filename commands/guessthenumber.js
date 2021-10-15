@@ -11,6 +11,8 @@ module.exports = {
         let number = Math.ceil(Math.random() * 100);
         let finished = false;
 
+        if(message.member.roles.cache.has('898604884528603136')) return message.reply('You are blocked from this servers economy.');
+        
         const userData = await profileModel.findOne({ userID: message.author.id, serverID: message.guild.id });
 
         message.channel.send(
