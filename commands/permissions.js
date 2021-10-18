@@ -11,6 +11,8 @@ module.exports = {
         const ticketRole = message.guild.roles.cache.find(role => role.name === 'Ticket Banned');
         const suggestionRole = message.guild.roles.cache.find(role => role.name === 'Suggestion Banned');
         const economyRole = message.guild.roles.cache.find(role => role.name === 'Economy Blacklist');
+        const emojiRole = message.guild.roles.cache.find(role => role.name === 'Emoji Blocked');
+        
 
         if (args[1] === 'info') {
             if (args[2] === 'tickets') {
@@ -32,6 +34,13 @@ module.exports = {
                     message.reply('This user is blocked from the server economy.')
                 } else {
                     message.reply('This user is not blocked from the server economy.')
+                }
+            }
+            if (args[2] === 'emoji') {
+                if (target.roles.cache.has('899394022932635659')) {
+                    message.reply('This user is blocked from sending emojis/stickers.')
+                } else {
+                    message.reply('This user is not blocked from sending emojis/stickers.')
                 }
             }
         }
@@ -60,6 +69,14 @@ module.exports = {
                 message.reply('This user can no longer use the server economy.')
                 }
             }
+            if(args[2] === 'emoji') {
+                if(target.roles.cache.has('899394022932635659')) {
+                    message.reply('This user is already blocked from sending emojis/stickers.')
+                } else {
+                target.roles.add(emojiRole);
+                message.reply('This user can no longer send emojis/stickers.')
+                }
+            }
         }
         if(args[1] === 'add') {
             if(args[2] === 'tickets') {
@@ -84,6 +101,14 @@ module.exports = {
                 } else {
                 target.roles.remove(economyRole);
                 message.reply('This user can now use the server economy.')
+                }
+            }
+            if(args[2] === 'emoji') {
+                if(!target.roles.cache.has('899394022932635659')) {
+                    message.reply('This user is not blocked from sending emojis/stickers.')
+                } else {
+                target.roles.remove(emojiRole);
+                message.reply('This user can now send emojis/stickers.')
                 }
             }
         }
