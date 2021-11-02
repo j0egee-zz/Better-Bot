@@ -12,14 +12,22 @@ module.exports = {
         const suggestionRole = message.guild.roles.cache.find(role => role.name === 'Suggestion Banned');
         const economyRole = message.guild.roles.cache.find(role => role.name === 'Economy Blacklist');
         const emojiRole = message.guild.roles.cache.find(role => role.name === 'Emoji Blocked');
+        const applyRole = message.guild.roles.cache.find(role => role.name === 'Application Blocked');
         
-
+        904930227237572688
         if (args[1] === 'info') {
             if (args[2] === 'tickets') {
                 if (target.roles.cache.has('866922287072673812')) {
                     message.reply('This user is blocked from making tickets.')
                 } else {
                     message.reply('This user is not blocked from making tickets.')
+                }
+            }
+            if (args[2] === 'apply') {
+                if (target.roles.cache.has('904930227237572688')) {
+                    message.reply('This user is blocked from applying.')
+                } else {
+                    message.reply('This user is not blocked applying.')
                 }
             }
             if (args[2] === 'suggestions') {
@@ -51,6 +59,14 @@ module.exports = {
                 } else {
                 target.roles.add(ticketRole);
                 message.reply('This user can no longer make tickets.')
+                }
+            }
+            if(args[2] === 'apply') {
+                if(target.roles.cache.has('904930227237572688')) {
+                    message.reply('This user is already blocked from applying.')
+                } else {
+                target.roles.add(applyRole);
+                message.reply('This user can no longer apply.')
                 }
             }
             if(args[2] === 'suggestions') {
@@ -85,6 +101,14 @@ module.exports = {
                 } else {
                 target.roles.remove(ticketRole);
                 message.reply('This user can now make tickets.')
+                }
+            }
+            if(args[2] === 'apply') {
+                if(!target.roles.cache.has('904930227237572688')) {
+                    message.reply('This user is not blocked from applying.')
+                } else {
+                target.roles.remove(applyRole);
+                message.reply('This user can now apply.')
                 }
             }
             if(args[2] === 'suggestions') {
