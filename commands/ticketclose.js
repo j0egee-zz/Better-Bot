@@ -16,7 +16,7 @@ module.exports = {
             .setColor('FADF2E')
             .setTimestamp(Date.now())
             .setFooter(`Bot created by j0egee#0001`, "https://cdn.discordapp.com/attachments/845366607080456265/861746867008569384/Untitled_Artwork_3.png")
-            .setTitle(`${message.channel.name}`)
+            .setTitle(`${message.channel.name} (${message.channel.id})`)
             .setDescription(`Has been deleted by ${message.author.tag}\n\n**${reason}**`);
 
 

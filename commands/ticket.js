@@ -44,7 +44,7 @@ module.exports = {
             .setColor('FADF2E')
             .setTimestamp(Date.now())
             .setFooter(`Bot created by j0egee#0001`, "https://cdn.discordapp.com/attachments/845366607080456265/861746867008569384/Untitled_Artwork_3.png")
-            .setTitle(`${message.author.username}`)
+            .setTitle(`${message.author.username} (${channel.id})`)
             .setDescription(`Has created a ticket ${channel}\n\n**${reason}**`);
 
         message.guild.channels.cache.get('863157013567373332').send(createEmbed)
