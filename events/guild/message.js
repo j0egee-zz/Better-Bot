@@ -8,6 +8,7 @@ module.exports = async (Discord, client, message) => {
 
     if (!message.content.startsWith(prefix) || message.author.bot) return;
 
+    if (message.member.roles.cache.has('906366152505171978')) return;
 
     let profileData;
     try {
