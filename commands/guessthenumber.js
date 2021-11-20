@@ -46,7 +46,7 @@ module.exports = {
 
                 finished = true;
 
-                const amount = (userData.coins + (5000 / tries)).toFixed()
+                const amount = (5000 / tries).toFixed()
 
                 message.channel.send(
                     new MessageEmbed()
