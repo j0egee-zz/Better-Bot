@@ -11,6 +11,8 @@ module.exports = {
 
         const target = args[0]
 
+        if (!target) return message.reply(`Be sure say the users ID. If you want to search by mentioning them use \`-history\``);
+
         const muteData = await muteLogs.findOne({ userID: target, guildID: message.guild.id }).sort({_id:-1})
         const kickData = await kickLogs.findOne({ userID: target, guildID: message.guild.id }).sort({_id:-1})
         const banData = await banLogs.findOne({ userID: target, guildID: message.guild.id }).sort({_id:-1})
