@@ -10,7 +10,7 @@ module.exports = {
         const target = args[0];
         const staff = message.author;
 
-        if (!target) return message.reply('Please say what user you want to ban.');
+        if (!target) return message.reply('Please say what user you want to unban.');
 
         const targetData = await banSchema.findOne({ userID: target, guildID: message.guild.id, current: true });
         if (!targetData) return message.channel.send(`This user is not banned`);
