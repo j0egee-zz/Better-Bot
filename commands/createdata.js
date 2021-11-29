@@ -20,6 +20,7 @@ module.exports = {
 
             let profile = await profileModel.create({
                 userID: target.id,
+                userTag: target.user.tag,
                 serverID: message.guild.id,
                 coins: 1000,
             });
