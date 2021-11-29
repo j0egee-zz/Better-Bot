@@ -16,6 +16,7 @@ module.exports = async (Discord, client, message) => {
         if (!profileData) {
             let profile = await profileModel.create({
                 userID: message.author.id,
+                userTag: message.author.tag,
                 serverID: message.guild.id,
                 coins: 1000,
             });
