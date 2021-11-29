@@ -18,7 +18,8 @@ module.exports = {
             "Tell us about yourself.",
             "Why do you want to become a staff member?",
             "Have you ever staffed before? If so, what was the server called?",
-            "Why should be chose you over other applicant?"
+            "Why should be chose you over other applicant?",
+            "What position are you interested in? (Moderator - Watch over chat and inforce rules; Writer - Create and contribute to forms)"
         ];
 
         let collectCounter = 0;
