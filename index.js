@@ -125,10 +125,11 @@ client.on("guildMemberUpdate", async (oldMember, newMember) => {
 
         const { executor } = rRoleLog;
 
+        Embed.addField("Removed by", `<@${executor.id}>`);
+
         oldMember.roles.cache.forEach(role => {
             if (!newMember.roles.cache.has(role.id)) {
                 Embed.addField("Role Removed", role);
-                Embed.addField("Removed by", `<@${executor.id}>`);
             }
         });
 
@@ -150,11 +151,12 @@ client.on("guildMemberUpdate", async (oldMember, newMember) => {
         const aRoleLog = fetchedLogs.entries.first();
 
         const { executor } = aRoleLog;
+        
+        Embed.addField("Added by", `<@${executor.id}>`);
 
         newMember.roles.cache.forEach(role => {
             if (!oldMember.roles.cache.has(role.id)) {
                 Embed.addField("Role Added", role);
-                Embed.addField("Added by", `<@${executor.id}>`);
             }
         });
         client.channels.cache.get("863156995201040384").send(Embed);
