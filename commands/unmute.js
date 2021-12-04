@@ -29,7 +29,7 @@ module.exports = {
             .addField(`Staff member (Muted)`, `<@${targetData.staffID}>`)
             .addField(`Staff member (Unmuted)`, `<@${message.author.id}>`)
 
-            return message.guild.channels.cache.get('863156995201040384').send(UmuteEmbed) && client.users.cache.get('473850297702285322').send(UmuteEmbed) && memberTarget.roles.remove(muteRole) && message.reply(`${target.tag} is now unmuted.`) && target.send(`You have been unmuted in *${message.guild.name}* by **${message.author.tag}**`);
+            return message.guild.channels.cache.get('863156995201040384').send(UmuteEmbed) && client.users.cache.get('473850297702285322').send(UmuteEmbed) && memberTarget.roles.remove(muteRole) && message.reply(`<@${target.id}> is now unmuted.`) && target.send(`You have been unmuted in *${message.guild.name}* by **${message.author.tag}**`);
 
         } catch (err) {
             console.log(err)
