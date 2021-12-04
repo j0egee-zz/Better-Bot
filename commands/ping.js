@@ -1,18 +1,23 @@
 module.exports = {
     name: 'ping',
-    aliases: ['test'],
+    aliases: ['uptime'],
     permissions: ["ADMINISTRATOR"],
     description: "This is a ping command!",
     execute(client, message, args, Discord) {
 
-        if (message.member.roles.cache.has('863160410097057793')) {
+        let totalSeconds = (client.uptime / 1000);
+        let days = Math.floor(totalSeconds / 86400);
+        totalSeconds %= 86400;
+        let hours = Math.floor(totalSeconds / 3600);
+        totalSeconds %= 3600;
+        let minutes = Math.floor(totalSeconds / 60);
+        let seconds = Math.floor(totalSeconds % 60);
 
-            message.channel.send('pong!');
-        }
-        else {
-            message.channel.send('You do not have permisions to run this command. If you think this is a mistake, contact your server admin.')
-        }
+        let uptime = `${days} days, ${hours} hours, ${minutes} minutes and ${seconds} seconds`;
 
-    }
+        message.channel.send('Stand by.').then(m => {
+            m.edit(`Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ws.ping)}ms. Uptime is ${uptime}`);
+          });
+        }
 
 }
