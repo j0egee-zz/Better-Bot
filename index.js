@@ -93,8 +93,8 @@ client.on('messageUpdate', async (oldMessage, newMessage) => {
         .setTitle('Message update')
         .setDescription(`${oldMessage.author}'s message was updated in ${oldMessage.channel}`)
         .addField('Jump to message', `[CLICK HERE](https://discord.com/channels/${oldMessage.guild.id}/${oldMessage.channel.id}/${oldMessage.id})`)
-        .addField(`Old message`, oldMessage.content)
-        .addField(`New message`, newMessage.content)
+        .addField(`Old message`, `${oldMessage.content}`)
+        .addField(`New message`, `${newMessage.content}`)
 
     let logs = oldMessage.guild.channels.cache.get('863156995201040384')
     logs.send({embeds: [muembed]})
@@ -109,7 +109,7 @@ client.on('messageDelete', async (message) => {
         .setFooter(`Bot created by j0egee#0001`, "https://cdn.discordapp.com/attachments/845366607080456265/861746867008569384/Untitled_Artwork_3.png")
         .setTitle('Message delete')
         .setDescription(`${message.author}'s message was deleted in ${message.channel}`)
-        .addField(`Message content`, message.content)
+        .addField(`Message content`, `${message.content}`)
 
     let logs = message.guild.channels.cache.get('863156995201040384')
     logs.send({embeds: [mdembed]})
@@ -140,7 +140,7 @@ client.on("guildMemberUpdate", async (oldMember, newMember) => {
 
         oldMember.roles.cache.forEach(role => {
             if (!newMember.roles.cache.has(role.id)) {
-                Embed.addField("Role Removed", role);
+                Embed.addField("Role Removed", `${role}`);
             }
         });
 
