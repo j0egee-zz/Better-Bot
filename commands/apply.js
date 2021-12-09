@@ -50,7 +50,7 @@ module.exports = {
                     return `**${index++}) ${questions[endCounter++]}**\n-> *${msg.content}*`
                 }).join(`\n\n`);
 
-                appChannel.send(new Discord.MessageEmbed()
+                const appEmbed = new Discord.MessageEmbed()
                     .setColor('FADF2E')
                     .setTimestamp(Date.now())
                     .setFooter(`Bot created by j0egee#0001`, "https://cdn.discordapp.com/attachments/845366607080456265/861746867008569384/Untitled_Artwork_3.png")
@@ -58,7 +58,9 @@ module.exports = {
                     .setTitle('New Application!')
                     .setDescription(mappedResponces)
 
-                ).then(function (message) {
+                appChannel.send({embeds: [appEmbed]})
+
+                .then(function (message) {
                     message.react("👍")
                     message.react("👎")
 

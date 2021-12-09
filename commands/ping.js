@@ -15,7 +15,7 @@ module.exports = {
 
         let uptime = `${days} days, ${hours} hours, ${minutes} minutes and ${seconds} seconds`;
 
-        message.channel.send('Stand by.').then(m => {
+        message.reply('Stand by.').then(m => {
             m.edit(`Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ws.ping)}ms. Uptime is ${uptime}`);
           });
         }

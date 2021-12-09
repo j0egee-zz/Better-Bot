@@ -34,7 +34,7 @@ module.exports = async (client, profileData) => {
                     .addField(`Staff`, `<@${staffID}>`)
                     .addField(`Reason`, reason)
 
-                guild.channels.cache.get('863156995201040384').send(eMuteEmbed)
+                guild.channels.cache.get('863156995201040384').send({embeds: [eMuteEmbed]})
                 client.users.cache.get(userID).send(`Your mute in *${guild.name}* has now expired.`);
 
                 await muteSchema.updateMany(conditional, {

@@ -15,19 +15,18 @@ module.exports = {
         
         const userData = await profileModel.findOne({ userID: message.author.id, serverID: message.guild.id });
 
-        message.channel.send(
-            new MessageEmbed()
-                .setTitle(`Guess The Number`)
-                .setDescription(`Guess a number (1-100), you have \`1 minute\``)
-                .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
-                .setColor('FADF2E')
-                .setTimestamp(Date.now())
-                .setFooter(`Bot created by j0egee#0001`, "https://cdn.discordapp.com/attachments/845366607080456265/861746867008569384/Untitled_Artwork_3.png")
+        const startEmbed = new Discord.MessageEmbed()
+        .setTitle(`Guess The Number`)
+        .setDescription(`Guess a number (1-100), you have \`1 minute\``)
+        .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
+        .setColor('FADF2E')
+        .setTimestamp(Date.now())
+        .setFooter(`Bot created by j0egee#0001`, "https://cdn.discordapp.com/attachments/845366607080456265/861746867008569384/Untitled_Artwork_3.png")
 
 
-        )
+        message.channel.send({embeds: [startEmbed]})
 
-        let collector = new MessageCollector(message.channel, msg => msg.author.id == message.author.id, {
+        let collector = new MessageCollector((m) => m.author.id === message.author.id && m.author.id !== message.guild.me.id, {
             time: 60000,
         });
 
@@ -48,17 +47,18 @@ module.exports = {
 
                 const amount = (5000 / tries).toFixed()
 
-                message.channel.send(
-                    new MessageEmbed()
-                        .setTitle(`Correct`)
-                        .setDescription(`${parseInt(msg)} is correct!\n`
-                        + `It took you ${tries} times to get it\n`
-                        + `I added ${amount.toLocaleString()} to your balance.`)
-                        .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
-                        .setColor('FADF2E')
-                        .setTimestamp(Date.now())
-                        .setFooter(`Bot created by j0egee#0001`, "https://cdn.discordapp.com/attachments/845366607080456265/861746867008569384/Untitled_Artwork_3.png")
-                )
+                const finEmbed = new Discord.MessageEmbed()
+                .setTitle(`Correct`)
+                .setDescription(`${parseInt(msg)} is correct!\n`
+                + `It took you ${tries} times to get it\n`
+                + `I added ${amount.toLocaleString()} to your balance.`)
+                .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
+                .setColor('FADF2E')
+                .setTimestamp(Date.now())
+                .setFooter(`Bot created by j0egee#0001`, "https://cdn.discordapp.com/attachments/845366607080456265/861746867008569384/Untitled_Artwork_3.png")
+        
+
+                message.channel.send({embeds: [finEmbed]})
                 await profileModel.findOneAndUpdate({
                     userID: message.author.id,
                     serverID: message.guild.id

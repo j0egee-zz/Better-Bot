@@ -10,7 +10,7 @@ module.exports = {
         let messageArgs = message.content.split(`-say ${sayChannel}`).join("")
 
         sayChannel.send(`${messageArgs}`)
-        message.reply(`I said your message in ${sayChannel}.`)
+        message.channel.send(`I said your message in ${sayChannel}.`)
         message.delete()
     }
 }

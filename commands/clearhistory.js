@@ -11,6 +11,8 @@ module.exports = {
 
         const target = message.mentions.users.first();
 
+        if(!target) return message.reply(`Please say the user.`)
+
         const muteData = await muteLogs.findOne({ userID: target.id, guildID: message.guild.id })
         const kickData = await kickLogs.findOne({ userID: target.id, guildID: message.guild.id })
         const banData = await banLogs.findOne({ userID: target.id, guildID: message.guild.id })

@@ -26,8 +26,8 @@ module.exports = {
 
         message.delete()
 
-        if(randomNumber === 1) return message.channel.send(headsEmbed);
+        if(randomNumber === 1) return message.channel.send({embeds: [headsEmbed]});
 
-        if(randomNumber === 2) return message.channel.send(tailsEmbed);
+        if(randomNumber === 2) return message.channel.send({embeds: [tailsEmbed]});
     }
 }

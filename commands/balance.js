@@ -16,6 +16,6 @@ module.exports = {
       .setTitle('Your balance is:')
       .setDescription(`**Coins**- *${profileData.coins.toLocaleString()}*`);
 
-    message.channel.send(embed)
+    message.channel.send({embeds: [embed]})
   },
 };

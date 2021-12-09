@@ -20,7 +20,7 @@ module.exports = {
             .addField(`-wiki`, `Show our helpful wiki pages.`)
             .setDescription(`Click the 📈 reaction to view the admin commands.`)
 
-        let messageEmbed = await message.channel.send(embed);
+        let messageEmbed = await message.channel.send({embeds: [embed]});
 
         messageEmbed.react(`📈`)
 
@@ -57,7 +57,7 @@ module.exports = {
                         .addField(`-userinfo`, `Get the user infomation for a user in the server.`)
                         .setDescription(`Re-run the \`-help\` command to view the player commands.`)
 
-                    await message.channel.send(adminEmbed);
+                    await message.channel.send({embeds: [adminEmbed]});
                     messageEmbed.delete()
                 }
             }

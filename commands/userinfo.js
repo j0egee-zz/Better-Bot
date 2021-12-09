@@ -32,7 +32,7 @@ module.exports = {
                 .addField(`Created on`, `<t:${createUnix}:f> (<t:${createUnix}:R>)`)
                 .addField(`Roles`, `${pfpMemberRoles}`)
 
-            message.channel.send(embed);
+            message.channel.send({embeds: [embed]});
             message.channel.send(`Here is ${pfpMember}'s user info.`)
         
         }

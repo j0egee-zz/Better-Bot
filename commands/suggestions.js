@@ -21,7 +21,7 @@ module.exports = {
             .setFooter(`Bot created by j0egee#0001`, "https://cdn.discordapp.com/attachments/845366607080456265/861746867008569384/Untitled_Artwork_3.png")
             .setDescription(messageArgs);
 
-        message.guild.channels.cache.get('863162965004124191').send(embed).then((msg) => {
+        message.guild.channels.cache.get('863162965004124191').send({embeds: [embed]}).then((msg) => {
             msg.react('👍');
             msg.react('👎');
             message.delete();

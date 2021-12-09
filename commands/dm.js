@@ -17,6 +17,6 @@ module.exports = {
             .setDescription(args.slice(1).join(" "));
 
 
-        user.user.send(args.slice(1).join(" ")).then(() => message.channel.send(dmEmbed)).catch(() => message.channel.send(`${user.user.tag} is not accepting DM's.`))
+        user.user.send(args.slice(1).join(" ")).then(() => message.channel.send({embeds: [dmEmbed]})).catch(() => message.channel.send(`${user.user.tag} is not accepting DM's.`))
     }
 }

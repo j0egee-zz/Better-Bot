@@ -1,5 +1,16 @@
 const Discord = require('discord.js');
-const client = new Discord.Client({ partials: ["MESSAGE", "CHANNEL", "REACTION"] });
+const { Intents } = Discord;
+
+const intents = new Intents ();
+
+for(const intent of Object.keys (Intents.FLAGS)){
+intents.add(intent);
+}
+
+const client = new Discord.Client ({
+  intents: intents
+});
+
 const mongoose = require('mongoose');
 
 const fs = require('fs');
@@ -11,7 +22,7 @@ client.commands = new Discord.Collection();
 client.events = new Discord.Collection();
 
 client.on("ready", async () => {
-    client.user.setActivity("you | -help | -wiki", { type: "WATCHING" });
+    client.user.setActivity("you | -help ", { type: "WATCHING" });
     client.channels.cache.get('863156995201040384').send('Restart successful! I am now back online!');
     memberCounter(client)
     muteRemover(client)
@@ -52,7 +63,7 @@ mongoose.connect('mongodb+srv://j0egee:BetterBot4Life@better-bot.tbfne.mongodb.n
     console.log(err);
 });
 
-client.on("message", async (message, guild, Discord) => {
+client.on("messageCreate", async (message, guild, Discord) => {
 
     const { MessageEmbed } = require('discord.js')
 
@@ -65,7 +76,7 @@ client.on("message", async (message, guild, Discord) => {
             .setDescription(`${message.content}`)
 
         const DMC = client.channels.cache.get('863156995201040384')
-        DMC.send(dmEmbed)
+        DMC.send({embeds: [dmEmbed]})
     }
 })
 
@@ -86,7 +97,7 @@ client.on('messageUpdate', async (oldMessage, newMessage) => {
         .addField(`New message`, newMessage.content)
 
     let logs = oldMessage.guild.channels.cache.get('863156995201040384')
-    logs.send(muembed)
+    logs.send({embeds: [muembed]})
 })
 client.on('messageDelete', async (message) => {
 
@@ -101,7 +112,7 @@ client.on('messageDelete', async (message) => {
         .addField(`Message content`, message.content)
 
     let logs = message.guild.channels.cache.get('863156995201040384')
-    logs.send(mdembed)
+    logs.send({embeds: [mdembed]})
 })
 
 client.on("guildMemberUpdate", async (oldMember, newMember) => {
@@ -133,7 +144,7 @@ client.on("guildMemberUpdate", async (oldMember, newMember) => {
             }
         });
 
-        client.channels.cache.get("863156995201040384").send(Embed);
+        client.channels.cache.get("863156995201040384").send({embeds: [Embed]});
     } else if (oldMember.roles.cache.size < newMember.roles.cache.size) {
         const Embed = new Discord.MessageEmbed();
         Embed.setColor('FADF2E');
@@ -156,10 +167,10 @@ client.on("guildMemberUpdate", async (oldMember, newMember) => {
 
         newMember.roles.cache.forEach(role => {
             if (!oldMember.roles.cache.has(role.id)) {
-                Embed.addField("Role Added", role);
+                Embed.addField("Role Added", `${role}`);
             }
         });
-        client.channels.cache.get("863156995201040384").send(Embed);
+        client.channels.cache.get("863156995201040384").send({embeds: [Embed]});
     };
 
     if (!oldMember.nickname && newMember.nickname) {
@@ -169,8 +180,8 @@ client.on("guildMemberUpdate", async (oldMember, newMember) => {
             .setColor('FADF2E')
             .setTimestamp(Date.now())
             .setFooter(`Bot created by j0egee#0001`, "https://cdn.discordapp.com/attachments/845366607080456265/861746867008569384/Untitled_Artwork_3.png")
-            .addField("New nickname", newMember.nickname)
-        client.channels.cache.get('863156995201040384').send(membernewnicklog);
+            .addField("New nickname", `${newMember.nickname}`)
+        client.channels.cache.get('863156995201040384').send({embeds: [membernewnicklog]});
         return;
     }
     if (oldMember.nickname && !newMember.nickname) {
@@ -180,8 +191,8 @@ client.on("guildMemberUpdate", async (oldMember, newMember) => {
             .setColor('FADF2E')
             .setTimestamp(Date.now())
             .setFooter(`Bot created by j0egee#0001`, "https://cdn.discordapp.com/attachments/845366607080456265/861746867008569384/Untitled_Artwork_3.png")
-            .addField("Removed nickname", oldMember.nickname)
-        client.channels.cache.get('863156995201040384').send(memberremovenicklog);
+            .addField("Removed nickname", `${oldMember.nickname}`)
+        client.channels.cache.get('863156995201040384').send({embeds: [memberremovenicklog]});
         return;
     }
     if (oldMember.nickname && newMember.nickname) {
@@ -191,9 +202,9 @@ client.on("guildMemberUpdate", async (oldMember, newMember) => {
             .setColor('FADF2E')
             .setTimestamp(Date.now())
             .setFooter(`Bot created by j0egee#0001`, "https://cdn.discordapp.com/attachments/845366607080456265/861746867008569384/Untitled_Artwork_3.png")
-            .addField("Nickname before", oldMember.nickname)
-            .addField("Nickname after", newMember.nickname);
-        client.channels.cache.get('863156995201040384').send(memberchangednicklog);
+            .addField("Nickname before", `${oldMember.nickname}`)
+            .addField("Nickname after", `${newMember.nickname}`);
+        client.channels.cache.get('863156995201040384').send({embeds: [memberchangednicklog]});
         return;
     }
 });
@@ -220,8 +231,8 @@ client.on('guildMemberRemove', async member => {
 
     if (target.id === member.id) {
         let logs = member.guild.channels.cache.get('863156995201040384')
-        logs.send(kickEmbed)
-        client.users.cache.get('473850297702285322').send(kickEmbed);;
+        logs.send({embeds: [kickEmbed]})
+        client.users.cache.get('473850297702285322').send({embeds: [kickEmbed]});;
     } else {
         console.log(`${member.user.tag} left the guild, audit log fetch was inconclusive.`);
     }
@@ -250,8 +261,8 @@ client.on('guildBanAdd', async (guild, user) => {
 
     if (target.id === user.id) {
         let logs = guild.channels.cache.get('863156995201040384')
-        logs.send(banEmbed)
-        client.users.cache.get('473850297702285322').send(banEmbed);
+        logs.send({embeds: [banEmbed]})
+        client.users.cache.get('473850297702285322').send({embeds: [banEmbed]});
     } else {
         console.log(`${user.tag} got hit with the swift hammer of justice in the guild ${guild.name}, audit log fetch was inconclusive.`);
     }
@@ -278,8 +289,8 @@ client.on('guildBanRemove', async (guild, user) => {
 
     if (target.id === user.id) {
         let logs = guild.channels.cache.get('863156995201040384')
-        logs.send(rbanEmbed)
-        client.users.cache.get('473850297702285322').send(rbanEmbed);
+        logs.send({embeds: [rbanEmbed]})
+        client.users.cache.get('473850297702285322').send({embeds: [rbanEmbed]});
     } else {
         console.log(`${user.tag} unbanned from ${guild.name}, audit log fetch was inconclusive.`);
     }

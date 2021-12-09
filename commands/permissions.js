@@ -1,3 +1,5 @@
+const { Permissions } = require(`discord.js`)
+
 module.exports = {
     name: "permissions",
     aliases: [`perms`, `perm`],
@@ -9,7 +11,7 @@ module.exports = {
         const target = message.mentions.members.first();
         if (!target) return message.channel.send(`Be sure to mention the user.`);
 
-        if (target.hasPermission('BAN_MEMBERS')) return message.reply('You can not manage permissions of admins.')
+        if (target.permissions.has(Permissions.FLAGS.BAN_MEMBERS)) return message.reply('You can not manage permissions of admins.')
 
         if (!args[1]) return message.channel.send(`Please use the correct arguments. Options:\`info\`, \`add\`, or \`remove\``);
         if (args[1] !== `info`) {

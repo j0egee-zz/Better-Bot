@@ -24,17 +24,17 @@ module.exports = {
             .addField(`Bot Author`, `j0egee#0001`)
             .addField(`Bot ID`, `849372423069237288`)
             .addField(`Bot Version`, `Beta 2`)
-            .addField(`Bot Uptime`, uptime)
+            .addField(`Bot Uptime`, `${uptime}`)
             .addField(`Language`, `JS`)
             .addField(`Discord.JS`, `12.5.3`)
             .addField(`Bot Prefix`, `-`)
             .addField(`Bot Age`, `<t:${((client.user.createdAt.valueOf().toFixed())/ 1000).toFixed()}:F>`)
             .addField(`Server Age`, `<t:${((message.guild.createdAt.valueOf().toFixed())/ 1000).toFixed()}:F>`)
-            .addField(`Server ID`, message.guild.id)
-            .addField(`Server Members`, message.guild.memberCount)
+            .addField(`Server ID`, `${message.guild.id}`)
+            .addField(`Server Members`, `${message.guild.memberCount}`)
 
 
-        message.channel.send(embed)
+        message.channel.send({embeds: [embed]})
 
     }
 }

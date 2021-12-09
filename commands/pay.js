@@ -37,7 +37,7 @@ module.exports = {
 
         else {
 
-            let messageEmbed = await message.channel.send(embed);
+            let messageEmbed = await message.channel.send({embeds: [embed]});
             messageEmbed.react(`✅`)
             client.on('messageReactionAdd', async (reaction, user) => {
                 if (reaction.message.partial) await reaction.message.fetch();
@@ -57,7 +57,7 @@ module.exports = {
                         .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
                         .setDescription(`${target} has been payed **${amount.toLocaleString()} coins**.`)
 
-                    message.channel.send(payEmbed);
+                    message.channel.send({embeds: [payEmbed]});
 
                     await profileModel.findOneAndUpdate({
                         userID: message.author.id,

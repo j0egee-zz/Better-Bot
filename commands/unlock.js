@@ -3,14 +3,9 @@ module.exports = {
     aliases: [],
     permissions: ["MANAGE_MESSAGES"],
     description: 'Unlock a channel in the server!',
-    execute(client, message, cmd, args, Discord, profileData) {
+    async execute(client, message, cmd, args, Discord, profileData) {
 
-            message.channel.overwritePermissions([
-                {
-                    id: message.guild.id,
-                    allow: ['SEND_MESSAGES']
-                }
-            ]);
+        await message.channel.permissionOverwrites.edit(message.guild.id, { SEND_MESSAGES: true });
 
             message.channel.send(`This channel is now unlocked!`);
 

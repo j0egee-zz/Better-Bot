@@ -16,8 +16,8 @@ module.exports = {
             .setFooter(`Bot created by j0egee#0001`, "https://cdn.discordapp.com/attachments/845366607080456265/861746867008569384/Untitled_Artwork_3.png")
             .setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))
             .setColor('FADF2E')
-        bcChannel.send(embed)
+        bcChannel.send({embeds: [embed]})
         message.delete()
-        message.reply(`I have sent your annoucment to ${bcChannel}.`)
+        message.channel.send(`I have sent your annoucment to ${bcChannel}.`)
     }
 }

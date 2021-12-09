@@ -14,6 +14,6 @@ module.exports = {
         
         await message.channel.messages.fetch({limit: args[0]}).then(messages => {
             message.channel.bulkDelete(messages);
-        }); message.reply(`The last **${args[0]} messages** have been cleared!`)
+        }); message.channel.send(`The last **${args[0]} messages** have been cleared!`)
     }
 }

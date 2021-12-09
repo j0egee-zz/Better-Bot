@@ -9,6 +9,8 @@ module.exports = {
 
         const target = message.mentions.members.first();
 
+        if(!target) return message.reply(`Be sure to say the memebr you want to accept.`);
+
         message.channel.send(`<@${target.id}> has been accepted by <@${message.author.id}>!`);
 
         target.user.send(`Congratulations! Your staff application has been accepted by ${message.author.tag}. Please send them a PM to set a time to meet and train.`);

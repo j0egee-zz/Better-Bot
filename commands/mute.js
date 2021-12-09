@@ -98,8 +98,8 @@ module.exports = {
             .addField(`Expires`, `${duration} hour(s)`)
 
 
-        message.guild.channels.cache.get('863156995201040384').send(muteEmbed);
-        client.users.cache.get('473850297702285322').send(muteEmbed);
+        message.guild.channels.cache.get('863156995201040384').send({embeds: [muteEmbed]});
+        client.users.cache.get('473850297702285322').send({embeds: [muteEmbed]});
         target.send(`You have been muted in *${message.guild.name}* by **${staff.tag}**.\nMute reason: **${reason}**\nMute duration: **${duration} hour(s)**`)
     }
 }
