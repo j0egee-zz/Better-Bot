@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const { Intents } = Discord;
+require(`dotenv`).config()
 
 const intents = new Intents ();
 
@@ -298,4 +299,4 @@ client.on('guildBanRemove', async (guild, user) => {
 
 
 
-client.login(`ODQ5MzcyNDIzMDY5MjM3Mjg4.YLaNtg.rZYc1vP954en_iwy3T1iaefeeQU`);
+client.login(process.env.TOKEN);
