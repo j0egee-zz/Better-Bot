@@ -54,7 +54,7 @@ client.on('guildMemberAdd', async guildMember => {
     require(`./handlers/${handler}`)(client, Discord);
 })
 
-mongoose.connect('mongodb+srv://j0egee:BetterBot4Life@better-bot.tbfne.mongodb.net/BetterBotDB?retryWrites=true&w=majority', {
+mongoose.connect(process.env.DB, {
     useNewUrlParser: true,
     useFindAndModify: false,
     useUnifiedTopology: true
