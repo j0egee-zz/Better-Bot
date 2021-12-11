@@ -6,7 +6,14 @@ module.exports = {
     description: "Apply for the staff team!!",
     async execute(client, message, cmd, args, Discord, profileData) {
 
-        if(message.member.roles.cache.has('904930227237572688')) return message.reply('You are blocked from applying for staff on this server.');
+        const target = message.author
+
+        const ogChannel = message.guild.channels.cache.find(c => c.name === 'applications');
+        const oldApp = ogChannel.threads.cache.find(x => x.name === `${target.id}`)
+
+        if(oldApp) return message.channel.send(`You already have a pending application.`)
+
+        if (message.member.roles.cache.has('904930227237572688')) return message.reply('You are blocked from applying for staff on this server.');
 
         message.reply('Ill start the application process in a DM. If you are not accepting DM from members in this server, please enable that now and try again.');
         message.author.send(`**Welcome to your application for staff on the AD Center server! Lets get started!**`);
@@ -25,7 +32,7 @@ module.exports = {
         let collectCounter = 0;
         let endCounter = 0;
 
-        const filter = (m) => m.author.id === message.author.id;
+        const filter = (m) => m.author.id === target.id;
 
         const appStart = await message.author.send(questions[collectCounter++]);
         const channel = appStart.channel;
@@ -58,23 +65,26 @@ module.exports = {
                     .setTitle('New Application!')
                     .setDescription(mappedResponces)
 
-                appChannel.send({embeds: [appEmbed]})
+                appChannel.send({ embeds: [appEmbed] })
 
-                .then(function (message) {
-                    message.react("👍")
-                    message.react("👎")
+                    .then(async function (message) {
+                        message.react("👍")
+                        message.react("👎")
 
-                })
-
-                appChannel.send(`@everyone`)
-                    .then(function (message) {
-                        message.delete()
-
-                    })
+                        const thread = await message.startThread({
+                            name: `${target.id}`,
+                            autoArchiveDuration: 60,
+                            reason: 'New staff application',
+                        })
+                        thread.send(`<@&863160410097057793> <@&863160446025859072> <@&915619114293264384>`)
 
                     }
 
+
+            ,)
+            }
         }
+
         )
     }
 }

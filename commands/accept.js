@@ -11,10 +11,18 @@ module.exports = {
 
         if(!target) return message.reply(`Be sure to say the memebr you want to accept.`);
 
+        const ogChannel = message.guild.channels.cache.find(c => c.name === 'applications');
+        const appChannel = ogChannel.threads.cache.find(x => x.name === `${target.id}`);
+
         message.channel.send(`<@${target.id}> has been accepted by <@${message.author.id}>!`);
 
         target.user.send(`Congratulations! Your staff application has been accepted by ${message.author.tag}. Please send them a PM to set a time to meet and train.`);
         message.delete()
+
+        appChannel.setName(`ACCEPTED ${target.id}`);
+        appChannel.setArchived(true)
+
+        
 
     }
 }
