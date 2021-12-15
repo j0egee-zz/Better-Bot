@@ -32,6 +32,7 @@ module.exports = {
             .addField(`Server Age`, `<t:${((message.guild.createdAt.valueOf().toFixed())/ 1000).toFixed()}:F>`)
             .addField(`Server ID`, `${message.guild.id}`)
             .addField(`Server Members`, `${message.guild.memberCount}`)
+            .addField(`Bot Sourse Code`, `[Click here](https://github.com/j0egee/Better-Bot)`)
 
 
         message.channel.send({embeds: [embed]})
