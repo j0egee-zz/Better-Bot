@@ -26,8 +26,13 @@ module.exports = {
 
         message.channel.send({embeds: [startEmbed]})
 
-        let collector = new MessageCollector((m) => m.author.id === message.author.id && m.author.id !== message.guild.me.id, {
-            time: 60000,
+        const filter = (m) => m.author.id === message.author.id && m.author.id !== message.guild.me.id
+
+
+        let collector = new MessageCollector(
+        message.channel, {
+                filter,
+                time: 60000,
         });
 
         let tries = 0;
