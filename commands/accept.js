@@ -20,7 +20,7 @@ module.exports = {
         message.delete()
 
         appChannel.setName(`ACCEPTED ${target.id}`);
-        appChannel.setArchived(true)
+        appChannel.delete()
 
         
 

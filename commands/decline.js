@@ -20,6 +20,6 @@ module.exports = {
         message.delete()
 
         appChannel.setName(`DECLINED ${target.id}`)
-        appChannel.setArchived(true)
+        appChannel.delete()
     }
 }
