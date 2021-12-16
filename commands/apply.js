@@ -32,12 +32,12 @@ module.exports = {
         let collectCounter = 0;
         let endCounter = 0;
 
-        const filter = (m) => m.author.id === target.id;
+        const filter = (m) => m.author.id === message.author.id && !m.author.bot;
 
         const appStart = await message.author.send(questions[collectCounter++]);
         const channel = appStart.channel;
 
-        const collector = channel.createMessageCollector(filter);
+        const collector = channel.createMessageCollector(channel, filter);
 
         collector.on("collect", () => {
             if (collectCounter < questions.length) {
