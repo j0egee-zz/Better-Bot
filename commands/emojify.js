@@ -1,6 +1,7 @@
 module.exports = {
     name : 'emojify',
     description : `Make any sentence out of emoji's`,
+    cooldown: 0.2,
     permissions: [],
 
     execute : async(client, message, cmd, args, Discord, profileDat) => {
@@ -21,13 +22,14 @@ module.exports = {
             "char*": ':asterisk:',
             "char÷": ':heavy_division_sign:',
             "char#": ':hash:',
-            "char!": `:exclamation:`
+            "char!": `:exclamation:`,
+            "char?": `:question:`
         }
         
         for(let e of args.join(' ')) {
             if(/([a-z])/gim.test(e)) sentence += `:regional_indicator_${e.toLowerCase()}:`
             else if(/\s/.test(e)) sentence += ':blue_square:'
-            else if(/([1-9])/.test(e) || ['+', '-', '*', '#', '!', '÷'].includes(e)) sentence += chars[`char${e}`]
+            else if(/([1-9])/.test(e) || ['+', '-', '*', '#', '!', '÷', '?'].includes(e)) sentence += chars[`char${e}`]
             else sentence += e
         }
 
