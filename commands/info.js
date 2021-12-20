@@ -1,3 +1,6 @@
+const packageJSON = require("../package.json");
+
+
 module.exports = {
     name: 'info',
     aliases: ['about'],
@@ -16,6 +19,7 @@ module.exports = {
 
         let uptime = `${days} days, ${hours} hours, ${minutes} minutes and ${seconds} seconds`;
 
+        const discordJSVersion = packageJSON.dependencies["discord.js"];
 
         const embed = new Discord.MessageEmbed()
             .setColor('FADF2E')
@@ -26,7 +30,7 @@ module.exports = {
             .addField(`Bot Version`, `Beta 2`)
             .addField(`Bot Uptime`, `${uptime}`)
             .addField(`Language`, `JS`)
-            .addField(`Discord.JS`, `12.5.3`)
+            .addField(`Discord.JS`, `${discordJSVersion}`)
             .addField(`Bot Prefix`, `-`)
             .addField(`Bot Age`, `<t:${((client.user.createdAt.valueOf().toFixed())/ 1000).toFixed()}:F>`)
             .addField(`Server Age`, `<t:${((message.guild.createdAt.valueOf().toFixed())/ 1000).toFixed()}:F>`)
