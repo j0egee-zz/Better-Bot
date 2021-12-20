@@ -20,13 +20,12 @@ module.exports = {
 
         const questions = [
             "How old are you?",
-            "How long have you been the the AD Center discord server for?",
+            `How long have you been the the ${message.guils.name} discord server for?`,
             "What time zone are you in?",
             "Tell us about yourself.",
             "Why do you want to become a staff member?",
             "Have you ever staffed before? If so, what was the server called?",
-            "Why should be chose you over other applicant?",
-            "What position are you interested in? (Moderator - Watch over chat and inforce rules; Writer - Create and contribute to forms)"
+            "Why should be chose you over other applicant?"
         ];
 
         let collectCounter = 0;
