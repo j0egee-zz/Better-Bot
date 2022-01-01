@@ -1,3 +1,5 @@
+require(`dotenv`).config()
+
 module.exports = {
     name: 'restart',
     aliases: [],
@@ -9,7 +11,7 @@ module.exports = {
             client.destroy();
             console.log(`Restarting! Stand by.`)
             setTimeout(function(){
-                client.login('ODQ5MzcyNDIzMDY5MjM3Mjg4.YLaNtg.rZYc1vP954en_iwy3T1iaefeeQU');
+                client.login(process.env.TOKEN);
                 console.log(`Bot responsive.`)
                 message.channel.send(`Responsive.`)
              }, 10000);
