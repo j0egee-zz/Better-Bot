@@ -20,7 +20,7 @@ module.exports = {
 
         const questions = [
             "How old are you?",
-            `How long have you been the the ${message.guils.name} discord server for?`,
+            `How long have you been the the ${message.guild.name} discord server for?`,
             "What time zone are you in?",
             "Tell us about yourself.",
             "Why do you want to become a staff member?",
@@ -31,7 +31,7 @@ module.exports = {
         let collectCounter = 0;
         let endCounter = 0;
 
-        const filter = (m) => m.author.id === message.author.id && !m.author.bot;
+        const filter = m => m.author.id === message.author.id && !m.author.bot;
 
         const appStart = await message.author.send(questions[collectCounter++]);
         const channel = appStart.channel;
