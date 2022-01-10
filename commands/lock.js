@@ -10,7 +10,7 @@ module.exports = {
 
             message.channel.send(`🚨 This channel has been locked by <@${message.author.id}>! 🚨`);
 
-            message.channel.setTopic(`🚨🚨 This channel is currently under an emergency lock! 🚨🚨`)
+            message.channel.setTopic(`🚨🚨 This channel is currently under a message lock! 🚨🚨`)
 
         }
     }
