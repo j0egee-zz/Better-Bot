@@ -6,7 +6,9 @@ const intents = new Intents ();
 
 for(const intent of Object.keys (Intents.FLAGS)){
 intents.add(intent);
+intents.add(Intents.FLAGS.DIRECT_MESSAGES)
 }
+
 
 const client = new Discord.Client ({
   intents: intents
@@ -68,7 +70,7 @@ client.on("messageCreate", async (message, guild, Discord) => {
 
     const { MessageEmbed } = require('discord.js')
 
-    if (message.channel.type === "dm" && !message.author.bot) {
+    if (message.channel.type === "DM" && !message.author.bot) {
         const dmEmbed = new MessageEmbed()
             .setColor('FADF2E')
             .setTimestamp(Date.now())
@@ -87,6 +89,8 @@ client.on('messageUpdate', async (oldMessage, newMessage) => {
     if(!oldMessage.content) return; 
     if(!newMessage.content) return;
 
+    if(oldMessage.author.bot) return;
+
     const muembed = new Discord.MessageEmbed()
         .setColor('FADF2E')
         .setTimestamp(Date.now())
@@ -103,6 +107,8 @@ client.on('messageUpdate', async (oldMessage, newMessage) => {
 client.on('messageDelete', async (message) => {
 
     if(!message.content) return;
+
+    if(message.author.bot) return;
     
     const mdembed = new Discord.MessageEmbed()
         .setColor('FADF2E')
