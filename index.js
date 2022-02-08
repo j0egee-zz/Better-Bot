@@ -26,7 +26,7 @@ client.events = new Discord.Collection();
 
 client.on("ready", async () => {
     client.user.setActivity("you | -help ", { type: "WATCHING" });
-    client.channels.cache.get('863156995201040384').send('Restart successful! I am now back online!');
+    client.channels.cache.get('863156995201040384').send(`Restart successful! I am now back online! Timestamp: <t:${(Date.now()/1000).toFixed()}:F>`);
     memberCounter(client)
     muteRemover(client)
 })
